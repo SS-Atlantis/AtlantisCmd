@@ -1,0 +1,45 @@
+# conda environment description file for AtlantisCmd package development environment
+#
+# Create a conda environment for development, testing and documentation of the package
+# with:
+#
+#   $ conda env create -f AtlantisCmd/envs/environment-dev.yaml
+#   $ source activate atlantis-cmd
+#   (atlantis-cmd)$ pip install --editable NEMO-Cmd/
+#   (atlantis-cmd)$ pip install --editable AtlantisCmd/
+#
+# See the envs/requirements.txt file for an exhaustive list of all of the
+# packages installed in the environment and their versions used in
+# recent development.
+
+name: atlantis-cmd
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - arrow
+  - cliff
+  - f90nml
+  - gitpython
+  - pip
+  - python=3.9
+  - pyyaml
+
+  # For coding style
+  - black
+
+  # For unit tests
+  - coverage
+  - pytest-cov
+
+  # For documentation
+  - sphinx
+  - sphinx_rtd_theme
+
+  - pip:
+    - python-hglib
+
+    # For unit tests
+    - pytest-randomly
