@@ -1,11 +1,11 @@
-*******************************
+**************************
 Atlantis Command Processor
-*******************************
+**************************
 
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
     :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.9+-blue.svg
+.. image:: https://img.shields.io/badge/python-3.9-blue.svg
     :target: https://docs.python.org/3.9/
     :alt: Python Version
 .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
@@ -15,9 +15,9 @@ Atlantis Command Processor
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    :target: https://atlantiscmd.readthedocs.io/en/latest/
+    :target: https://atlantis-cmd.readthedocs.io/en/latest/
     :alt: Documentation Status
-.. image:: https://img.shields.io/github/issues/MIDOSS/WWatch3-Cmd?logo=github
+.. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
     :alt: Issue Tracker
 
