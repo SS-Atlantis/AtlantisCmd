@@ -15,7 +15,7 @@ Atlantis Command Processor
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    :target: https://atlantis-cmd.readthedocs.io/en/latest/
+    :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues

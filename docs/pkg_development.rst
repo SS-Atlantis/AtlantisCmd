@@ -33,7 +33,7 @@
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
-    :target: https://atlantis-cmd.readthedocs.io/en/latest/
+    :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
@@ -161,7 +161,7 @@ Building the Documentation
 ==========================
 
 .. image:: https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    :target: https://atlantis-cmd.readthedocs.io/en/latest/
+    :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 The documentation for the :kbd:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
@@ -209,7 +209,7 @@ The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
 You can open the :file:`index.html` file in that directory tree in your browser to preview the results of the build.
 
 If you have write access to the `repository`_ on GitHub,
-whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://atlantis-cmd.readthedocs.io/en/latest/.
+whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://atlantiscmd.readthedocs.io/en/latest/.
 
 
 .. _AtlantisCmdLinkCheckingTheDocumentation:
@@ -254,7 +254,7 @@ The output looks something like:
     ( pkg_development: line  289) ok        https://git-scm.com/
     ( pkg_development: line   58) ok        https://docs.python.org/3/reference/lexical_analysis.html#f-strings
     ( pkg_development: line   89) ok        https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-    ( pkg_development: line   20) ok        https://atlantis-cmd.readthedocs.io/en/latest/
+    ( pkg_development: line   20) ok        https://atlantiscmd.readthedocs.io/en/latest/
     ( pkg_development: line   20) ok        https://img.shields.io/badge/code%20style-black-000000.svg
     (           index: line   36) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
     ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.9-blue.svg
