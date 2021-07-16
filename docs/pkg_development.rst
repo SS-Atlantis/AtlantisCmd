@@ -276,6 +276,10 @@ The output looks something like:
 
 Look for any errors in the above output or in _build/linkcheck/output.txt
 
+:command:`make linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
+
+.. _scheduled GitHub Actions workflow: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
+
 
 .. _AtlantisCmdRunningTheUnitTests:
 
