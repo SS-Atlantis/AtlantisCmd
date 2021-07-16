@@ -1,0 +1,16 @@
+# conda environment description file for readthedocs build environment
+
+name: atlantis-cmd-rtd
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - python=3.9
+
+  # RTD packages
+  - mock
+  - pillow
+  - sphinx
+  - sphinx_rtd_theme
