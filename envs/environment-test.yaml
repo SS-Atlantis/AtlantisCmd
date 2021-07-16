@@ -1,0 +1,33 @@
+# conda environment description file for AtlantisCmd package testing environment
+#
+# Creates a conda environment in which the AtlantisCmd package unit tests,
+# coverage analysis, and docs link checks can be run.
+# Primarily intended for creation of a conda env for use in a GitHub Actions workflows.
+
+name: atlantis-cmd-test
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - arrow
+  - cliff
+  - f90nml
+  - gitpython
+  - pip
+  - pyyaml
+
+  # For unit tests
+  - coverage
+  - pytest-cov
+
+  # For documentation
+  - sphinx
+  - sphinx_rtd_theme
+
+  - pip:
+    - python-hglib
+
+    # For unit tests
+    - pytest-randomly
