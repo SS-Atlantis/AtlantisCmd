@@ -98,6 +98,14 @@ from the :guilabel:`Code` button on the `repository`_ page.
 Development Environment
 =======================
 
+The :kbd:`AtlantisCmd` package depends on the `NEMO-Cmd package`_,
+so you need to clone its repo,
+`NEMO-Cmd`_,
+beside your clone of AtlantisCmd `repository`_.
+
+.. _NEMO-Cmd package: https://nemo-cmd.readthedocs.io/en/latest/
+.. _NEMO-Cmd: https://github.com/SalishSeaCast/NEMO-Cmd
+
 Setting up an isolated development environment using `Conda`_ is recommended.
 Assuming that you have `Miniconda3`_ installed,
 you can create and activate an environment called :kbd:`atlantiscmd` that will have all of the Python packages necessary for development,
@@ -111,16 +119,17 @@ and building the documentation with the commands below.
 
     $ cd AtlantisCmd
     $ conda env create -f env/environment-dev.yaml
-    $ source activate atlantiscmd
+    $ conda activate atlantis-cmd
+    (atlantis-cmd)$ pip install --editable ../NEMO-Cmd
     (atlantis-cmd)$ pip install --editable .
 
-The :kbd:`--editable` option in the :command:`pip install` command above installs the package from the cloned repo via symlinks so that the installed package will be automatically updated as the repo evolves.
+The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolves.
 
 To deactivate the environment use:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ source deactivate
+    (atlantis-cmd)$ conda deactivate
 
 
 .. _AtlantisCmdCodingStyle:

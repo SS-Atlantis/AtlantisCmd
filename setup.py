@@ -19,4 +19,9 @@ https://github.com/SalishSeaCast/NEMO-Cmd.
 import setuptools
 
 
-setuptools.setup()
+setuptools.setup(
+    entry_points={
+        # The atlantis command:
+        "console_scripts": ["atlantis = atlantis_cmd.main:main"],
+    }
+)
