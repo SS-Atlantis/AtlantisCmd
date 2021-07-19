@@ -25,6 +25,8 @@ The AtlantisCmd Python package provides a command processor tool called ``atlant
 It is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model.
 AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
 
+Documentation for the command processor is in the ``docs/`` directory and is rendered at https://atlantiscmd.readthedocs.io/en/latest/.
+
 
 License
 =======
