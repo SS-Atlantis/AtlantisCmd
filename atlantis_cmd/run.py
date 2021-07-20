@@ -54,10 +54,10 @@ class Run(cliff.command.Command):
             dest="no_submit",
             action="store_true",
             help="""
-            Prepare the temporary run directory, and the bash script to 
+            Prepare the temporary run directory, and the bash script to
             execute the Atlantis run, but don't launch the run.
-            This is useful during development runs when you want to hack on 
-            the bash script and/or use the same temporary run directory 
+            This is useful during development runs when you want to hack on
+            the bash script and/or use the same temporary run directory
             more than once.
             """,
         )

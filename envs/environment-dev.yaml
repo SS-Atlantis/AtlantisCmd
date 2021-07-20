@@ -27,8 +27,9 @@ dependencies:
   - python=3.9
   - pyyaml
 
-  # For coding style
+  # For code style & repo QA
   - black
+  - pre-commit
 
   # For unit tests
   - coverage
