@@ -75,4 +75,39 @@ class Run(cliff.command.Command):
         :param parsed_args: Arguments and options parsed from the command-line.
         :type parsed_args: :class:`argparse.Namespace` instance
         """
-        pass
+        launched_job_msg = run(
+            parsed_args.desc_file,
+            parsed_args.results_dir,
+            no_submit=parsed_args.no_submit,
+            quiet=parsed_args.quiet,
+        )
+        if launched_job_msg and not parsed_args.quiet:
+            logger.info(launched_job_msg)
+
+
+def run(desc_file, results_dir, no_submit=False, quiet=False):
+    """Create and populate a temporary run directory, and a run script, and launch the run.
+
+    The run script is stored in :file:`Atlantis.sh` in the temporary run directory.
+    That script is launched in a subprocess.
+
+    :param desc_file: File path/name of the YAML run description file.
+    :type desc_file: :py:class:`pathlib.Path`
+
+    :param results_dir: Path of the directory in which to store the run results;
+                        it will be created if it does not exist.
+    :type results_dir: :py:class:`pathlib.Path`
+
+    :param boolean no_submit: Prepare the temporary run directory,
+                              and the run script to execute the Atlantis run,
+                              but don't launch the run.
+
+    :param boolean quiet: Don't show the run directory path message;
+                          the default is to show the temporary run directory
+                          path.
+
+    :returns: Message confirming launch of the run script.
+    :rtype: str
+    """
+    launched_job_msg = ""
+    return launched_job_msg

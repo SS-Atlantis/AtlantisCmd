@@ -14,7 +14,9 @@
 # limitations under the License.
 """AtlantisCmd run sub-command plug-in unit and integration tests.
 """
+import logging
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -88,3 +90,58 @@ class TestParser:
         parser = run_cmd.get_parser("atlantis run")
         parsed_args = parser.parse_args(["foo.yaml", "results/foo/", "--no-submit"])
         assert parsed_args.no_submit is True
+
+
+class TestTakeAction:
+    """Unit tests for `atlantis run` sub-command take_action() method."""
+
+    @staticmethod
+    @pytest.fixture
+    def mock_run_submit_return(monkeypatch):
+        def mock_run_return(*args, **kwargs):
+            return "launched job msg"
+
+        monkeypatch.setattr(atlantis_cmd.run, "run", mock_run_return)
+
+    def test_take_action(self, mock_run_submit_return, run_cmd, caplog):
+        parsed_args = SimpleNamespace(
+            desc_file=Path("desc file"),
+            results_dir=Path("results dir"),
+            no_submit=False,
+            quiet=False,
+        )
+        caplog.set_level(logging.INFO)
+
+        run_cmd.take_action(parsed_args)
+
+        assert caplog.messages[0] == "launched job msg"
+
+    def test_take_action_quiet(self, mock_run_submit_return, run_cmd, caplog):
+        parsed_args = SimpleNamespace(
+            desc_file=Path("desc file"),
+            results_dir=Path("results dir"),
+            no_submit=False,
+            quiet=True,
+        )
+        caplog.set_level(logging.INFO)
+
+        run_cmd.take_action(parsed_args)
+
+        assert not caplog.messages
+
+    def test_take_action_no_submit(self, run_cmd, caplog, monkeypatch):
+        def mock_run_no_submit_return(*args, **kwargs):
+            return None
+
+        parsed_args = SimpleNamespace(
+            desc_file=Path("desc file"),
+            results_dir=Path("results dir"),
+            no_submit=True,
+            quiet=False,
+        )
+        monkeypatch.setattr(atlantis_cmd.run, "run", mock_run_no_submit_return)
+        caplog.set_level(logging.INFO)
+
+        run_cmd.take_action(parsed_args)
+
+        assert not caplog.messages
