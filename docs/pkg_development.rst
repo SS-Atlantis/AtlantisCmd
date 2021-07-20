@@ -35,6 +35,12 @@
 .. image:: https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
     :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
+    :alt: GitHub Workflow Status
+.. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
+    :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
+    :alt: Codecov Testing Coverage Report
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
     :alt: Issue Tracker
@@ -313,7 +319,16 @@ The output looks something like:
 
 .. code-block:: text
 
-    **add example pytest output**
+    ================================ test session starts =================================
+    platform linux -- Python 3.9.6, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+    Using --randomly-seed=3861485000
+    rootdir: /media/doug/warehouse/Atlantis/AtlantisCmd
+    plugins: randomly-3.8.0, cov-2.12.1
+    collected 1 item
+
+    tests/test_run.py .                                                                                                                                                                                                                                                                                            [100%]
+
+    ================================= 1 passed in 0.17s ==================================
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
@@ -339,6 +354,34 @@ or
     (atlantis-cmd)$ coverage html
 
 to produce an HTML report that you can view in your browser by opening :file:`AtlantisCmd/htmlcov/index.html`.
+
+
+.. _AtlantisCmdContinuousIntegration:
+
+Continuous Integration
+----------------------
+
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
+    :alt: GitHub Workflow Status
+.. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
+    :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
+    :alt: Codecov Testing Coverage Report
+
+The :kbd:`AtlantisCmd` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
+The results are visible on the `repo actions page`_,
+from the green checkmarks beside commits on the `repo commits page`_,
+or from the green checkmark to the left of the "Latest commit" message on the `repo code overview page`_ .
+The testing coverage report is uploaded to `codecov.io`_
+
+.. _repo actions page: https://github.com/SS-Atlantis/AtlantisCmd/actions
+.. _repo commits page: https://github.com/SS-Atlantis/AtlantisCmd/commits/main
+.. _repo code overview page: https://github.com/SS-Atlantis/AtlantisCmd
+.. _codecov.io: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
+
+The `GitHub Actions`_ workflow configuration that defines the continuous integration tasks is in the :file:`.github/workflows/pytest-coverage.yaml` file.
+
+.. _GitHub Actions: https://docs.github.com/en/actions
 
 
 .. _AtlantisCmdVersionControlRepository:
