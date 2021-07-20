@@ -26,8 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 class Run(cliff.command.Command):
-    """Prepare, execute, and gather results from a CSIRO Atlantis ecosystem model run.
-    """
+    """Prepare, execute, and gather results from a CSIRO Atlantis ecosystem model run."""
 
     def get_parser(self, prog_name):
         parser = super().get_parser(prog_name)

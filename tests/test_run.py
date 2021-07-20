@@ -28,8 +28,7 @@ def run_cmd():
 
 
 class TestParser:
-    """Unit tests for `atlantis run` sub-command command-line parser.
-    """
+    """Unit tests for `atlantis run` sub-command command-line parser."""
 
     def test_get_parser(self, run_cmd):
         parser = run_cmd.get_parser("atlantis run")

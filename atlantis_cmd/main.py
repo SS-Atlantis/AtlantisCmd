@@ -49,5 +49,5 @@ def main(argv=None):
     return app.run(argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
