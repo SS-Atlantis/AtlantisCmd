@@ -21,6 +21,7 @@ channels:
 dependencies:
   - arrow
   - cliff
+  - cookiecutter
   - f90nml
   - gitpython
   - pip
