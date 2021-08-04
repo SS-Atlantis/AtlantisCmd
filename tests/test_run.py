@@ -15,7 +15,6 @@
 """AtlantisCmd run sub-command plug-in unit and integration tests.
 """
 import logging
-import os
 import textwrap
 from pathlib import Path
 from types import SimpleNamespace
@@ -62,18 +61,18 @@ def run_desc(tmp_path):
             run id: SS-Atlantis
 
             paths:
-              atlantis code: {os.fspath(atlantis_code_dir)}
-              runs directory: {os.fspath(runs_dir)}
-              atlantis command: {os.fspath(atlantis_cmd)}
+              atlantis code: {atlantis_code_dir}
+              runs directory: {runs_dir}
+              atlantis command: {atlantis_cmd}
 
-            initial conditions: {os.fspath(init_conditions)}
+            initial conditions: {init_conditions}
 
             parameters:
-              run: {os.fspath(run_params)}
-              groups: {os.fspath(groups_csv)}
-              forcing: {os.fspath(forcing_params)}
-              physics: {os.fspath(physics_params)}
-              biology: {os.fspath(biology_params)}
+              run: {run_params}
+              groups: {groups_csv}
+              forcing: {forcing_params}
+              physics: {physics_params}
+              biology: {biology_params}
 
             output filename base: outputSalishSea
             """
@@ -260,6 +259,8 @@ class TestRun:
 
 
 class TestCalcCookiecutterContext:
+    """Unit tests for `atlantis run` _calc_cookiecutter_context() function."""
+
     @staticmethod
     @pytest.fixture
     def args():
