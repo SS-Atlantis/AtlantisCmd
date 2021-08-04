@@ -15,3 +15,9 @@ parameters:
   biology: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm
 
 output filename base: outputSalishSea
+
+vcs revisions:
+  git:
+    - /ocean/$USER/Atlantis/salish-sea-atlantis-model/
+    - /ocean/$USER/Atlantis/NEMO-Cmd/
+    - /ocean/$USER/Atlantis/AtlantisCmd/

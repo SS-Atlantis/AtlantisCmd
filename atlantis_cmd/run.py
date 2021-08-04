@@ -128,6 +128,7 @@ def run(desc_file, results_dir, no_submit=False, quiet=False):
         output_dir=runs_dir,
         extra_context=cookiecutter_context,
     )
+    _record_vcs_revisions(run_desc, tmp_run_dir)
 
     launched_job_msg = f"launched {run_id} run via {tmp_run_dir}/Atlantis.sh"
     if no_submit:
@@ -216,3 +217,31 @@ def _resolve_path(path):
     """
     path = Path(os.path.expandvars(path)).expanduser().resolve()
     return path
+
+
+def _record_vcs_revisions(run_desc, tmp_run_dir):
+    """Record revision and status information from version control system
+    repositories in files in the temporary run directory.
+
+    :param dict run_desc: Run description dictionary.
+
+    :param tmp_run_dir: Path of the temporary run directory.
+    :type tmp_run_dir: :py:class:`pathlib.Path`
+    """
+    if "vcs revisions" not in run_desc:
+        return
+    vcs_funcs = {
+        "git": nemo_cmd.prepare.get_git_revision,
+        "hg": nemo_cmd.prepare.get_hg_revision,
+    }
+    vcs_tools = nemo_cmd.prepare.get_run_desc_value(
+        run_desc, ("vcs revisions",), run_dir=tmp_run_dir
+    )
+    for vcs_tool in vcs_tools:
+        repos = nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("vcs revisions", vcs_tool), run_dir=tmp_run_dir
+        )
+        for repo in repos:
+            nemo_cmd.prepare.write_repo_rev_file(
+                Path(repo), tmp_run_dir, vcs_funcs[vcs_tool]
+            )

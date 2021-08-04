@@ -53,6 +53,7 @@ def run_desc(tmp_path):
     physics_params.write_text("")
     biology_params = model_config / "SS_biology.prm"
     biology_params.write_text("")
+    atlantis_cmd_repo = Path(__file__).parent.parent
 
     atlantis_yaml = tmp_path / "wwatch3.yaml"
     atlantis_yaml.write_text(
@@ -75,6 +76,10 @@ def run_desc(tmp_path):
               biology: {biology_params}
 
             output filename base: outputSalishSea
+
+            vcs revisions:
+              git:
+                - {atlantis_cmd_repo}
             """
         )
     )
@@ -219,14 +224,14 @@ class TestRun:
     def mock_calc_tmp_run_dir_return(run_desc, monkeypatch):
         def mock_return(*args):
             runs_dir = Path(run_desc["paths"]["runs directory"])
-            return runs_dir / "SS-Atlantis_2021-08-04T105442.944849-0700"
+            return runs_dir / "SS-Atlantis_2021-08-04T105443-0700"
 
         monkeypatch.setattr(atlantis_cmd.run, "_calc_tmp_run_dir", mock_return)
 
     def test_no_submit(
         self,
         mock_load_run_desc_return,
-        run_desc,
+        mock_calc_tmp_run_dir_return,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -253,7 +258,7 @@ class TestRun:
         runs_dir = Path(run_desc["paths"]["runs directory"])
         expected = (
             f"launched {run_id} run via "
-            f"{runs_dir}/SS-Atlantis_2021-08-04T105442.944849-0700/Atlantis.sh"
+            f"{runs_dir}/SS-Atlantis_2021-08-04T105443-0700/Atlantis.sh"
         )
         assert launch_job_msg == expected
 
@@ -358,3 +363,13 @@ class TestCalcCookiecutterContext:
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
         assert context["output_filename_base"] == run_desc["output filename base"]
+
+
+class TestRecordVCSRevisions:
+    """Unit tests for `atlantis run` _record_vcs_revisions() function."""
+
+    def test_record_vcs_revisions(self, run_desc):
+        tmp_run_dir = Path(run_desc["paths"]["runs directory"], "tmp_run_dir")
+        tmp_run_dir.mkdir()
+        atlantis_cmd.run._record_vcs_revisions(run_desc, tmp_run_dir)
+        assert (tmp_run_dir / "AtlantisCmd_rev.txt").exists()
