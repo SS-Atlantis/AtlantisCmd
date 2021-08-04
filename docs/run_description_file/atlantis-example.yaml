@@ -1,0 +1,17 @@
+run id: SS-Atlantis
+
+paths:
+  atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
+  runs directory: /ocean/$USER/Atlantis/runs/
+  atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
+
+initial conditions: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc
+
+parameters:
+  run: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_run.prm
+  groups: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv
+  forcing: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm
+  physics: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm
+  biology: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm
+
+output filename base: outputSalishSea

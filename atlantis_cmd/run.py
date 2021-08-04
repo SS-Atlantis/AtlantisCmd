@@ -18,9 +18,13 @@
 Prepare for, execute, and gather the results of a run of the CSIRO Atlantis ecosystem model.
 """
 import logging
+import os
 from pathlib import Path
 
+import arrow
 import cliff.command
+import cookiecutter.main
+import nemo_cmd.prepare
 
 logger = logging.getLogger(__name__)
 
@@ -109,5 +113,106 @@ def run(desc_file, results_dir, no_submit=False, quiet=False):
     :returns: Message confirming launch of the run script.
     :rtype: str
     """
-    launched_job_msg = ""
+    run_desc = nemo_cmd.prepare.load_run_desc(desc_file)
+    run_id = nemo_cmd.prepare.get_run_desc_value(run_desc, ("run id",))
+    runs_dir = nemo_cmd.prepare.get_run_desc_value(
+        run_desc, ("paths", "runs directory"), resolve_path=True
+    )
+    tmp_run_dir = _calc_tmp_run_dir(runs_dir, run_id)
+    cookiecutter_context = _calc_cookiecutter_context(
+        run_desc, run_id, desc_file, tmp_run_dir, results_dir
+    )
+    cookiecutter.main.cookiecutter(
+        os.fspath(Path(__file__).parent.parent / "cookiecutter"),
+        no_input=True,
+        output_dir=runs_dir,
+        extra_context=cookiecutter_context,
+    )
+
+    launched_job_msg = f"launched {run_id} run via {tmp_run_dir}/Atlantis.sh"
+    if no_submit:
+        return
     return launched_job_msg
+
+
+def _calc_tmp_run_dir(runs_dir, run_id):
+    """Compose a uniquely named temporary run directory name from the run id and a date/time stamp.
+
+    :param runs_dir: Path of the directory in which to create the temporary run directory.
+    :type runs_dir: :py:class:`pathlib.Path`
+
+    :param str run_id: Run identifier.
+
+    :return: Temporary run directory path.
+    :rtype: :py:class:`pathlib.Path`
+    """
+    tmp_run_dir_timestamp = arrow.now().format("YYYY-MM-DDTHHmmss.SSSSSSZ")
+    tmp_run_dir = runs_dir / f"{run_id}_{tmp_run_dir_timestamp}"
+    return tmp_run_dir
+
+
+def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results_dir):
+    """Calculate the cookiecutter context for creation of the temporary run directory.
+
+    :param dict run_desc: Run description dictionary.
+
+    :param str run_id: Run identifier.
+
+    :param desc_file: File path/name of the YAML run description file.
+    :type desc_file: :py:class:`pathlib.Path`
+
+    :param tmp_run_dir: Temporary run directory path.
+    :type tmp_run_dir: :py:class:`pathlib.Path`
+
+    :param results_dir: Path of the directory in which to store the run results.
+    :type results_dir: :py:class:`pathlib.Path`
+
+    :return: Cookiecutter context for creation of the temporary run directory.
+    :rtype: dict
+    """
+    cookiecutter_context = {
+        "run_id": run_id,
+        "run_desc_yaml": _resolve_path(desc_file),
+        "tmp_run_dir": tmp_run_dir,
+        "results_dir": _resolve_path(results_dir),
+        "atlantis_code": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("paths", "atlantis code"), resolve_path=True
+        ),
+        "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("paths", "atlantis command"), resolve_path=True
+        ),
+        "init_conditions": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("initial conditions",), resolve_path=True
+        ),
+        "groups": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", "groups"), resolve_path=True
+        ),
+        "run_params": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", "run"), resolve_path=True
+        ),
+        "forcing_params": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", "forcing"), resolve_path=True
+        ),
+        "physics_params": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", "physics"), resolve_path=True
+        ),
+        "biology_params": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", "biology"), resolve_path=True
+        ),
+        "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("output filename base",)
+        ),
+    }
+    return cookiecutter_context
+
+
+def _resolve_path(path):
+    """Expand environment variables and :file:`~` in :kbd:`path` and resolve it to an absolute path.
+
+    :param path: Path of the directory/file to resolve.
+    :type path: :py:class:`pathlib.Path`
+
+    :return: :py:class:`pathlib.Path`
+    """
+    path = Path(os.path.expandvars(path)).expanduser().resolve()
+    return path

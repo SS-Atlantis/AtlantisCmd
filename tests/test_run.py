@@ -15,10 +15,13 @@
 """AtlantisCmd run sub-command plug-in unit and integration tests.
 """
 import logging
+import os
+import textwrap
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+import yaml
 
 import atlantis_cmd.main
 import atlantis_cmd.run
@@ -27,6 +30,58 @@ import atlantis_cmd.run
 @pytest.fixture
 def run_cmd():
     return atlantis_cmd.run.Run(atlantis_cmd.main.AtlantisCmdApp, [])
+
+
+@pytest.fixture()
+def run_desc(tmp_path):
+    atlantis_code_dir = tmp_path / "atlantis-trunk"
+    atlantis_code_dir.mkdir()
+    runs_dir = tmp_path / "runs_dir"
+    runs_dir.mkdir()
+    atlantis_cmd = tmp_path / "atlantis"
+    atlantis_cmd.write_text("")
+    model_config = tmp_path / "salish-sea-atlantis-model"
+    model_config.mkdir()
+    init_conditions = model_config / "SS_init.nc"
+    init_conditions.write_bytes(b"")
+    groups_csv = model_config / "SS_grps.csv"
+    groups_csv.write_text("")
+    run_params = model_config / "SS_run.prm"
+    run_params.write_text("")
+    forcing_params = model_config / "SS_forcing.prm"
+    forcing_params.write_text("")
+    physics_params = model_config / "SS_physics.prm"
+    physics_params.write_text("")
+    biology_params = model_config / "SS_biology.prm"
+    biology_params.write_text("")
+
+    atlantis_yaml = tmp_path / "wwatch3.yaml"
+    atlantis_yaml.write_text(
+        textwrap.dedent(
+            f"""\
+            run id: SS-Atlantis
+
+            paths:
+              atlantis code: {os.fspath(atlantis_code_dir)}
+              runs directory: {os.fspath(runs_dir)}
+              atlantis command: {os.fspath(atlantis_cmd)}
+
+            initial conditions: {os.fspath(init_conditions)}
+
+            parameters:
+              run: {os.fspath(run_params)}
+              groups: {os.fspath(groups_csv)}
+              forcing: {os.fspath(forcing_params)}
+              physics: {os.fspath(physics_params)}
+              biology: {os.fspath(biology_params)}
+
+            output filename base: outputSalishSea
+            """
+        )
+    )
+    with atlantis_yaml.open("rt") as f:
+        run_desc = yaml.safe_load(f)
+    return run_desc
 
 
 class TestParser:
@@ -145,3 +200,160 @@ class TestTakeAction:
         run_cmd.take_action(parsed_args)
 
         assert not caplog.messages
+
+
+class TestRun:
+    """Unit tests for `atlantis run` run() function."""
+
+    @staticmethod
+    @pytest.fixture
+    def mock_load_run_desc_return(run_desc, monkeypatch):
+        def mock_return(*args):
+            return run_desc
+
+        monkeypatch.setattr(
+            atlantis_cmd.run.nemo_cmd.prepare, "load_run_desc", mock_return
+        )
+
+    @staticmethod
+    @pytest.fixture
+    def mock_calc_tmp_run_dir_return(run_desc, monkeypatch):
+        def mock_return(*args):
+            runs_dir = Path(run_desc["paths"]["runs directory"])
+            return runs_dir / "SS-Atlantis_2021-08-04T105442.944849-0700"
+
+        monkeypatch.setattr(atlantis_cmd.run, "_calc_tmp_run_dir", mock_return)
+
+    def test_no_submit(
+        self,
+        mock_load_run_desc_return,
+        run_desc,
+        tmp_path,
+    ):
+        results_dir = tmp_path / "results_dir"
+        launch_job_msg = atlantis_cmd.run.run(
+            tmp_path / "atlantis.yaml",
+            results_dir,
+            no_submit=True,
+        )
+        assert launch_job_msg is None
+
+    def test_submit(
+        self,
+        mock_load_run_desc_return,
+        mock_calc_tmp_run_dir_return,
+        run_desc,
+        tmp_path,
+    ):
+        results_dir = tmp_path / "results_dir"
+        launch_job_msg = atlantis_cmd.run.run(
+            tmp_path / "atlantis.yaml",
+            results_dir,
+        )
+        run_id = run_desc["run id"]
+        runs_dir = Path(run_desc["paths"]["runs directory"])
+        expected = (
+            f"launched {run_id} run via "
+            f"{runs_dir}/SS-Atlantis_2021-08-04T105442.944849-0700/Atlantis.sh"
+        )
+        assert launch_job_msg == expected
+
+
+class TestCalcCookiecutterContext:
+    @staticmethod
+    @pytest.fixture
+    def args():
+        return SimpleNamespace(
+            run_id="SS-Atlantis",
+            desc_file=Path(
+                "/ocean/dlatorne/Atlantis/salish-sea-atlantis-model/atlantis.yaml"
+            ),
+            tmp_run_dir=Path(
+                "/ocean/dlatorne/Atlantis/runs/SS-Atlantis_20210722T165443.123456+0700"
+            ),
+            results_dir=Path("/ocean/dlatorne/Atlantis/runs/SS-Atlantis-test/"),
+        )
+
+    def test_len_context(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert len(context) == 13
+
+    def test_run_id(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["run_id"] == args.run_id
+
+    def test_run_desc_yaml(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["run_desc_yaml"] == args.desc_file
+
+    def test_tmp_run_dir(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["tmp_run_dir"] == args.tmp_run_dir
+
+    def test_results_dir(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["results_dir"] == args.results_dir
+
+    def test_atlantis_code(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["atlantis_code"] == Path(run_desc["paths"]["atlantis code"])
+
+    def test_atlantis_cmd(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["atlantis_cmd"] == Path(run_desc["paths"]["atlantis command"])
+
+    def test_init_conditions(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["init_conditions"] == Path(run_desc["initial conditions"])
+
+    def test_groups_csv(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["groups"] == Path(run_desc["parameters"]["groups"])
+
+    def test_run_params(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["run_params"] == Path(run_desc["parameters"]["run"])
+
+    def test_forcing_params(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["forcing_params"] == Path(run_desc["parameters"]["forcing"])
+
+    def test_physics_params(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["physics_params"] == Path(run_desc["parameters"]["physics"])
+
+    def test_biology_params(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["biology_params"] == Path(run_desc["parameters"]["biology"])
+
+    def test_output_filename_base(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["output_filename_base"] == run_desc["output filename base"]
