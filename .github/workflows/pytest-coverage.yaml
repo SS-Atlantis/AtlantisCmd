@@ -18,7 +18,8 @@ jobs:
         python-version: ['3.9']
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Cache conda pkgs
         uses: actions/cache@v1
@@ -29,7 +30,8 @@ jobs:
           path: ~/conda_pkgs_dir
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('envs/environment-test.yaml') }}
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - name: Create conda environment
+        uses: conda-incubator/setup-miniconda@v2
         with:
            auto-update-conda: true
            auto-activate-base: false
@@ -48,7 +50,8 @@ jobs:
         run: |
           pytest --cov=$GITHUB_WORKSPACE --cov-report=xml
 
-      - uses: 8398a7/action-slack@v3
+      - name: Push job status to SalishSeaCast Slack
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: Python ${{ matrix.python-version }} pytest & coverage report
