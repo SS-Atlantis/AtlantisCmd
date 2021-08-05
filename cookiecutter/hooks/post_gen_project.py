@@ -16,6 +16,9 @@
 """Post-rendering script to set up symlinks and copied files in temporary run directory
 for a run of the CSIRO Atlantis ecosystem model.
 """
+import shutil
 from pathlib import Path
 
 Path("atlantisMerged").symlink_to(Path("{{ cookiecutter.atlantis_executable }}"))
+
+shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), Path.cwd())
