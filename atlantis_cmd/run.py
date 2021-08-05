@@ -177,28 +177,31 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "tmp_run_dir": tmp_run_dir,
         "results_dir": _resolve_path(results_dir),
         "atlantis_code": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("paths", "atlantis code"), resolve_path=True
+            run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("paths", "atlantis command"), resolve_path=True
+            run_desc,
+            ("paths", "atlantis command"),
+            resolve_path=True,
+            run_dir=tmp_run_dir,
         ),
         "init_conditions": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("initial conditions",), resolve_path=True
+            run_desc, ("initial conditions",), resolve_path=True, run_dir=tmp_run_dir
         ),
         "groups": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "groups"), resolve_path=True
+            run_desc, ("parameters", "groups"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "run_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "run"), resolve_path=True
+            run_desc, ("parameters", "run"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "forcing_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "forcing"), resolve_path=True
+            run_desc, ("parameters", "forcing"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "physics_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "physics"), resolve_path=True
+            run_desc, ("parameters", "physics"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "biology_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "biology"), resolve_path=True
+            run_desc, ("parameters", "biology"), resolve_path=True, run_dir=tmp_run_dir
         ),
         "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("output filename base",)
