@@ -229,10 +229,20 @@ class TestRun:
 
         monkeypatch.setattr(atlantis_cmd.run, "_calc_tmp_run_dir", mock_return)
 
+    @staticmethod
+    @pytest.fixture
+    def mock_record_vcs_revisions(run_desc, monkeypatch):
+        def mock_return(*args):
+            pass
+
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            monkeypatch.setattr(atlantis_cmd.run, "_record_vcs_revisions", mock_return)
+
     def test_no_submit(
         self,
         mock_load_run_desc_return,
         mock_calc_tmp_run_dir_return,
+        mock_record_vcs_revisions,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -247,6 +257,7 @@ class TestRun:
         self,
         mock_load_run_desc_return,
         mock_calc_tmp_run_dir_return,
+        mock_record_vcs_revisions,
         run_desc,
         tmp_path,
     ):
@@ -367,7 +378,8 @@ class TestCalcCookiecutterContext:
 
 
 @pytest.mark.skipif(
-    os.environ.get("GITHUB_ACTIONS"), reason="Doesn't work in GitHub Actions workflow"
+    os.environ.get("GITHUB_ACTIONS") == "true",
+    reason="Doesn't work in GitHub Actions workflow",
 )
 class TestRecordVCSRevisions:
     """Unit tests for `atlantis run` _record_vcs_revisions() function."""
