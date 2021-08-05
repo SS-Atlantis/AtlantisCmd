@@ -54,7 +54,7 @@ def run_desc(tmp_path):
     physics_params.write_text("")
     biology_params = model_config / "SS_biology.prm"
     biology_params.write_text("")
-    atlantis_cmd_repo = os.environ.get("GITHUB_WORKSPACE", Path(__file__).parent.parent)
+    atlantis_cmd_repo = Path(__file__).parent.parent
 
     atlantis_yaml = tmp_path / "wwatch3.yaml"
     atlantis_yaml.write_text(
@@ -366,6 +366,9 @@ class TestCalcCookiecutterContext:
         assert context["output_filename_base"] == run_desc["output filename base"]
 
 
+@pytest.mark.skipif(
+    os.environ.get("GITHUB_ACTIONS"), reason="Doesn't work in GitHub Actions workflow"
+)
 class TestRecordVCSRevisions:
     """Unit tests for `atlantis run` _record_vcs_revisions() function."""
 
