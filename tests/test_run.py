@@ -235,11 +235,14 @@ class TestCalcCookiecutterContext:
         )
         assert context["results_dir"] == args.results_dir
 
-    def test_atlantis_code(self, run_desc, args):
+    def test_atlantis_executable(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["atlantis_code"] == Path(run_desc["paths"]["atlantis code"])
+        expected = Path(run_desc["paths"]["atlantis code"]).joinpath(
+            "atlantis", "atlantismain", "atlantisMerged"
+        )
+        assert context["atlantis_executable"] == expected
 
     def test_atlantis_cmd(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(

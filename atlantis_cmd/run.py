@@ -122,6 +122,8 @@ def run(desc_file, results_dir, no_submit=False, quiet=False):
     cookiecutter_context = _calc_cookiecutter_context(
         run_desc, run_id, desc_file, tmp_run_dir, results_dir
     )
+    # Symlinks and copied files in temporary run directory are created by
+    # cookiecutter/hooks/post_gen_project.py script
     cookiecutter.main.cookiecutter(
         os.fspath(Path(__file__).parent.parent / "cookiecutter"),
         no_input=True,
@@ -171,13 +173,16 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
     :return: Cookiecutter context for creation of the temporary run directory.
     :rtype: dict
     """
+    atlantis_repo = nemo_cmd.prepare.get_run_desc_value(
+        run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
+    )
     cookiecutter_context = {
         "run_id": run_id,
         "run_desc_yaml": _resolve_path(desc_file),
         "tmp_run_dir": tmp_run_dir,
         "results_dir": _resolve_path(results_dir),
-        "atlantis_code": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
+        "atlantis_executable": atlantis_repo.joinpath(
+            "atlantis", "atlantismain", "atlantisMerged"
         ),
         "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
             run_desc,
