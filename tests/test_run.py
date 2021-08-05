@@ -15,6 +15,7 @@
 """AtlantisCmd run sub-command plug-in unit and integration tests.
 """
 import logging
+import os
 import textwrap
 from pathlib import Path
 from types import SimpleNamespace
@@ -53,7 +54,7 @@ def run_desc(tmp_path):
     physics_params.write_text("")
     biology_params = model_config / "SS_biology.prm"
     biology_params.write_text("")
-    atlantis_cmd_repo = Path(__file__).parent.parent
+    atlantis_cmd_repo = os.environ.get("GITHUB_WORKSPACE", Path(__file__).parent.parent)
 
     atlantis_yaml = tmp_path / "wwatch3.yaml"
     atlantis_yaml.write_text(
