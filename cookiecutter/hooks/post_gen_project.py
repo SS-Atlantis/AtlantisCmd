@@ -30,3 +30,5 @@ parameters = "{{ cookiecutter.parameters }}"
 parameters = json.loads(parameters.replace("'", '"'))
 for key, path in parameters.items():
     shutil.copy2(Path(path), f"{key}.prm")
+
+shutil.copy2(Path("{{ cookiecutter.groups }}"), "groups.csv")
