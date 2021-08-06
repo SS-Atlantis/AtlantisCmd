@@ -6,10 +6,12 @@
   "atlantis_executable": "/ocean/$USER/Atlantis/atlantis-trunk/atlantis/atlantismain/atlantisMerged",
   "atlantis_cmd": "$HOME/conda_envs/atlantis-dev/bin/atlantis",
   "init_conditions": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc",
-  "groups": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv",
-  "run_params": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_run.prm",
-  "forcing_params": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm",
-  "physics_params": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm",
-  "biology_params": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm",
-  "output_filename_base": "outputSalishSea"
+  "output_filename_base": "outputSalishSea",
+  "parameters": {
+    "run": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_run.prm",
+    "forcing": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm",
+    "physics": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm",
+    "biology": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm"
+  },
+  "groups": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv"
 }

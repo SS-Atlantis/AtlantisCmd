@@ -62,9 +62,10 @@ def run_desc(tmp_path):
 
             initial conditions: {init_conditions}
 
+            groups: {groups_csv}
+
             parameters:
               run: {run_params}
-              groups: {groups_csv}
               forcing: {forcing_params}
               physics: {physics_params}
               biology: {biology_params}

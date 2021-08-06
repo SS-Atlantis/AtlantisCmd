@@ -16,9 +16,17 @@
 """Post-rendering script to set up symlinks and copied files in temporary run directory
 for a run of the CSIRO Atlantis ecosystem model.
 """
+import json
 import shutil
 from pathlib import Path
 
 Path("atlantisMerged").symlink_to(Path("{{ cookiecutter.atlantis_executable }}"))
 
-shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), Path.cwd())
+shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), "init_conditions.nc")
+
+# Deserializing the parameters dict from cookiecutter.json is a bit hacky,
+# especially because of the necessary single-quote to double-quote substitution.
+parameters = "{{ cookiecutter.parameters }}"
+parameters = json.loads(parameters.replace("'", '"'))
+for key, path in parameters.items():
+    shutil.copy2(Path(path), f"{key}.prm")

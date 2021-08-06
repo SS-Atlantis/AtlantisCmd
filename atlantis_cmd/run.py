@@ -176,6 +176,14 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
     atlantis_repo = nemo_cmd.prepare.get_run_desc_value(
         run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
     )
+    # Build parameters dict item-by-item instead of via dict comprehension
+    # so that we can fail fast if the .prm does not exist
+    params_dict = nemo_cmd.prepare.get_run_desc_value(run_desc, ("parameters",))
+    parameters = {}
+    for key, path in params_dict.items():
+        parameters[key] = nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("parameters", key), resolve_path=True, run_dir=tmp_run_dir
+        )
     cookiecutter_context = {
         "run_id": run_id,
         "run_desc_yaml": _resolve_path(desc_file),
@@ -193,23 +201,12 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "init_conditions": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("initial conditions",), resolve_path=True, run_dir=tmp_run_dir
         ),
-        "groups": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "groups"), resolve_path=True, run_dir=tmp_run_dir
-        ),
-        "run_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "run"), resolve_path=True, run_dir=tmp_run_dir
-        ),
-        "forcing_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "forcing"), resolve_path=True, run_dir=tmp_run_dir
-        ),
-        "physics_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "physics"), resolve_path=True, run_dir=tmp_run_dir
-        ),
-        "biology_params": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", "biology"), resolve_path=True, run_dir=tmp_run_dir
-        ),
         "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("output filename base",)
+        ),
+        "parameters": parameters,
+        "groups": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("groups",), resolve_path=True, run_dir=tmp_run_dir
         ),
     }
     return cookiecutter_context
