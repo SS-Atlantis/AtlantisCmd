@@ -49,7 +49,7 @@ def run_desc(tmp_path):
     biology_params.write_text("")
     atlantis_cmd_repo = Path(__file__).parent.parent
 
-    atlantis_yaml = tmp_path / "wwatch3.yaml"
+    atlantis_yaml = tmp_path / "atlantis.yaml"
     atlantis_yaml.write_text(
         textwrap.dedent(
             f"""\

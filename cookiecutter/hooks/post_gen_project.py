@@ -20,6 +20,9 @@ import json
 import shutil
 from pathlib import Path
 
+
+shutil.copy2(Path("{{ cookiecutter.run_desc_yaml }}"), Path.cwd())
+
 Path("atlantisMerged").symlink_to(Path("{{ cookiecutter.atlantis_executable }}"))
 
 shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), "init_conditions.nc")
