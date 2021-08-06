@@ -5,9 +5,13 @@ paths:
   runs directory: /ocean/$USER/Atlantis/runs/
   atlantis command: /media/doug/warehouse/conda_envs/atlantis-cmd/bin/atlantis
 
-initial conditions: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc
+# The name of the boxes .bgm file must match the value of the "geometry" attribute in the
+# global attributes of the initial conditions file.
+boxes: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_xy.bgm
 
-groups: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv
+initial conditions: /ocean/dlatorne/Atlantis/salish-sea-atlantis-model/SS_init.nc
+
+groups: /ocean/dlatorne/Atlantis/salish-sea-atlantis-model/SS_grps.csv
 
 parameters:
   # The run, forcing, physics, and biology parameters files are required for all runs,

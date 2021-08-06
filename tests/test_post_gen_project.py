@@ -65,6 +65,26 @@ class TestPostGenProject:
         )
         assert (tmp_run_dir / "atlantisMerged").is_symlink()
 
+    def test_boxes_file(
+        self,
+        mock_load_run_desc_return,
+        mock_calc_tmp_run_dir_return,
+        mock_record_vcs_revisions,
+        run_desc,
+        tmp_path,
+    ):
+        results_dir = tmp_path / "results_dir"
+        atlantis_cmd.run.run(
+            tmp_path / "atlantis.yaml",
+            results_dir,
+            no_submit=True,
+        )
+        tmp_run_dir = (
+            Path(run_desc["paths"]["runs directory"])
+            / "SS-Atlantis_2021-08-04T105443-0700"
+        )
+        assert (tmp_run_dir / Path(run_desc["boxes"]).name).is_file()
+
     def test_init_conditions_file(
         self,
         mock_load_run_desc_return,

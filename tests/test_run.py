@@ -210,7 +210,7 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert len(context) == 10
+        assert len(context) == 11
 
     def test_run_id(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -251,17 +251,23 @@ class TestCalcCookiecutterContext:
         )
         assert context["atlantis_cmd"] == Path(run_desc["paths"]["atlantis command"])
 
+    def test_boxes(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["boxes"] == Path(run_desc["boxes"])
+
     def test_init_conditions(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
         assert context["init_conditions"] == Path(run_desc["initial conditions"])
 
-    def test_output_filename_base(self, run_desc, args):
+    def test_groups_csv(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["output_filename_base"] == run_desc["output filename base"]
+        assert context["groups"] == Path(run_desc["groups"])
 
     def test_len_params(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -299,11 +305,11 @@ class TestCalcCookiecutterContext:
             run_desc["parameters"]["biology"]
         )
 
-    def test_groups_csv(self, run_desc, args):
+    def test_output_filename_base(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["groups"] == Path(run_desc["groups"])
+        assert context["output_filename_base"] == run_desc["output filename base"]
 
 
 @pytest.mark.skipif(

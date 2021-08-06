@@ -198,15 +198,18 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
             resolve_path=True,
             run_dir=tmp_run_dir,
         ),
+        "boxes": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("boxes",), resolve_path=True, run_dir=tmp_run_dir
+        ),
         "init_conditions": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("initial conditions",), resolve_path=True, run_dir=tmp_run_dir
         ),
-        "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("output filename base",)
-        ),
-        "parameters": parameters,
         "groups": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("groups",), resolve_path=True, run_dir=tmp_run_dir
+        ),
+        "parameters": parameters,
+        "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("output filename base",)
         ),
     }
     return cookiecutter_context

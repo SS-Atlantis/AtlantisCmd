@@ -25,6 +25,8 @@ shutil.copy2(Path("{{ cookiecutter.run_desc_yaml }}"), Path.cwd())
 
 Path("atlantisMerged").symlink_to(Path("{{ cookiecutter.atlantis_executable }}"))
 
+shutil.copy2(Path("{{ cookiecutter.boxes }}"), Path.cwd())
+
 shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), "init_conditions.nc")
 
 # Deserializing the parameters dict from cookiecutter.json is a bit hacky,

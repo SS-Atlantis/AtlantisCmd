@@ -35,6 +35,8 @@ def run_desc(tmp_path):
     atlantis_cmd.write_text("")
     model_config = tmp_path / "salish-sea-atlantis-model"
     model_config.mkdir()
+    boxes = model_config / "SS_xy.bgm"
+    boxes.write_text("")
     init_conditions = model_config / "SS_init.nc"
     init_conditions.write_bytes(b"")
     groups_csv = model_config / "SS_grps.csv"
@@ -59,6 +61,8 @@ def run_desc(tmp_path):
               atlantis code: {atlantis_code_dir}
               runs directory: {runs_dir}
               atlantis command: {atlantis_cmd}
+
+            boxes: {boxes}
 
             initial conditions: {init_conditions}
 
