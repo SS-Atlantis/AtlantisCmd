@@ -49,6 +49,14 @@ def run_desc(tmp_path):
     physics_params.write_text("")
     biology_params = model_config / "SS_biology.prm"
     biology_params.write_text("")
+    model_config_input = model_config / "input"
+    model_config_input.mkdir()
+    hydro_forcing = model_config_input / "SS_hydro.nc"
+    hydro_forcing.write_bytes(b"")
+    temp_forcing = model_config_input / "SS_temp.nc"
+    temp_forcing.write_bytes(b"")
+    salt_forcing = model_config_input / "SS_salt.nc"
+    salt_forcing.write_bytes(b"")
     atlantis_cmd_repo = Path(__file__).parent.parent
 
     atlantis_yaml = tmp_path / "atlantis.yaml"
@@ -73,6 +81,15 @@ def run_desc(tmp_path):
               forcing: {forcing_params}
               physics: {physics_params}
               biology: {biology_params}
+
+            forcing:
+              SS_hydro.nc:
+                link to: {hydro_forcing}
+              SS_temp.nc:
+                link to: {temp_forcing}
+              SS_salt.nc:
+                link to: {salt_forcing}
+
 
             output filename base: outputSalishSea
 

@@ -145,3 +145,24 @@ class TestPostGenProject:
             / "SS-Atlantis_2021-08-04T105443-0700"
         )
         assert (tmp_run_dir / "groups.csv").is_file()
+
+    def test_forcing_symlinks(
+        self,
+        mock_load_run_desc_return,
+        mock_calc_tmp_run_dir_return,
+        mock_record_vcs_revisions,
+        run_desc,
+        tmp_path,
+    ):
+        results_dir = tmp_path / "results_dir"
+        atlantis_cmd.run.run(
+            tmp_path / "atlantis.yaml",
+            results_dir,
+            no_submit=True,
+        )
+        tmp_run_dir = (
+            Path(run_desc["paths"]["runs directory"])
+            / "SS-Atlantis_2021-08-04T105443-0700"
+        )
+        for key in run_desc["forcing"]:
+            assert (tmp_run_dir / key).is_symlink()

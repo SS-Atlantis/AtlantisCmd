@@ -176,13 +176,22 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
     atlantis_repo = nemo_cmd.prepare.get_run_desc_value(
         run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
     )
-    # Build parameters dict item-by-item instead of via dict comprehension
-    # so that we can fail fast if the .prm does not exist
+    # Build parameters and forcing dicts item-by-item instead of via dict comprehensions
+    # so that we can fail fast if any of the files do not exist
     params_dict = nemo_cmd.prepare.get_run_desc_value(run_desc, ("parameters",))
     parameters = {}
     for key, path in params_dict.items():
         parameters[key] = nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("parameters", key), resolve_path=True, run_dir=tmp_run_dir
+        )
+    forcing_dict = nemo_cmd.prepare.get_run_desc_value(run_desc, ("forcing",))
+    forcing = {}
+    for key, path in forcing_dict.items():
+        forcing[key] = nemo_cmd.prepare.get_run_desc_value(
+            run_desc,
+            ("forcing", key, "link to"),
+            resolve_path=True,
+            run_dir=tmp_run_dir,
         )
     cookiecutter_context = {
         "run_id": run_id,
@@ -211,6 +220,7 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("output filename base",)
         ),
+        "forcing": forcing,
     }
     return cookiecutter_context
 

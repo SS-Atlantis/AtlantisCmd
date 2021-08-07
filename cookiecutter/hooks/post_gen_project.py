@@ -29,11 +29,16 @@ shutil.copy2(Path("{{ cookiecutter.boxes }}"), Path.cwd())
 
 shutil.copy2(Path("{{ cookiecutter.init_conditions }}"), "init_conditions.nc")
 
-# Deserializing the parameters dict from cookiecutter.json is a bit hacky,
+shutil.copy2(Path("{{ cookiecutter.groups }}"), "groups.csv")
+
+# Deserializing the parameters and forcing dicts from cookiecutter.json is a bit hacky,
 # especially because of the necessary single-quote to double-quote substitution.
 parameters = "{{ cookiecutter.parameters }}"
 parameters = json.loads(parameters.replace("'", '"'))
 for key, path in parameters.items():
     shutil.copy2(Path(path), f"{key}.prm")
 
-shutil.copy2(Path("{{ cookiecutter.groups }}"), "groups.csv")
+forcing = "{{ cookiecutter.forcing }}"
+forcing = json.loads(forcing.replace("'", '"'))
+for link_name, target in forcing.items():
+    Path(link_name).symlink_to(Path(target))

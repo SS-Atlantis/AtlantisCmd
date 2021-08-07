@@ -21,6 +21,18 @@ parameters:
   physics: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm
   biology: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm
 
+forcing:
+  # The keys must match the forcing file names in the forcing.prm file.
+  # The file names in the forcing.prm file must be just file names, not path/filename.
+  # The keys will be the names used for the symlinks created in the temporary run
+  # directory.
+  SS_hydro.nc:
+    link to: /ocean/$USER/Atlantis/salish-sea-atlantis-model/inputs/SS_hydro.nc
+  SS_temp.nc:
+    link to: /ocean/$USER/Atlantis/salish-sea-atlantis-model/inputs/SS_temp.nc
+  SS_salt.nc:
+    link to: /ocean/$USER/Atlantis/salish-sea-atlantis-model/inputs/SS_salt.nc
+
 output filename base: outputSalishSea
 
 vcs revisions:

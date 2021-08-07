@@ -210,7 +210,7 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert len(context) == 11
+        assert len(context) == 12
 
     def test_run_id(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -281,6 +281,12 @@ class TestCalcCookiecutterContext:
         )
         assert context["parameters"]["run"] == Path(run_desc["parameters"]["run"])
 
+    def test_len_forcing(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert len(context["forcing"]) == 3
+
     def test_forcing_params(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
@@ -303,6 +309,30 @@ class TestCalcCookiecutterContext:
         )
         assert context["parameters"]["biology"] == Path(
             run_desc["parameters"]["biology"]
+        )
+
+    def test_hydro_forcing(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["forcing"]["SS_hydro.nc"] == Path(
+            run_desc["forcing"]["SS_hydro.nc"]["link to"]
+        )
+
+    def test_temperature_forcing(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["forcing"]["SS_temp.nc"] == Path(
+            run_desc["forcing"]["SS_temp.nc"]["link to"]
+        )
+
+    def test_salinity_forcing(self, run_desc, args):
+        context = atlantis_cmd.run._calc_cookiecutter_context(
+            run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
+        )
+        assert context["forcing"]["SS_salt.nc"] == Path(
+            run_desc["forcing"]["SS_salt.nc"]["link to"]
         )
 
     def test_output_filename_base(self, run_desc, args):
