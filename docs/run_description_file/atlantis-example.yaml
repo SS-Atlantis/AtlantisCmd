@@ -3,7 +3,7 @@ run id: SS-Atlantis
 paths:
   atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
   runs directory: /ocean/$USER/Atlantis/runs/
-  atlantis command: /media/doug/warehouse/conda_envs/atlantis-cmd/bin/atlantis
+  atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
 
 # The name of the boxes .bgm file must match the value of the "geometry" attribute in the
 # global attributes of the initial conditions file.
