@@ -24,6 +24,9 @@ setuptools.setup(
         # The atlantis command:
         "console_scripts": ["atlantis = atlantis_cmd.main:main"],
         # Sub-command plug-ins:
-        "atlantis.app": ["run = atlantis_cmd.run:Run"],
+        "atlantis.app": [
+            "gather = nemo_cmd.gather:Gather",
+            "run = atlantis_cmd.run:Run",
+        ],
     }
 )
