@@ -1,0 +1,60 @@
+# conda environment description for Atlantis code development and execution
+# via the AtlantisCmd Python pkg
+#
+# Create a conda environment for development and execution of Atlantis
+# with:
+#
+#   $ conda env create -f envs/atlantis-dev.yaml
+#   $ conda activate atlantis-dev
+#   (atlantis-dev)$ python3 -m pip install -e NEMO-Cmd
+#   (atlantis-dev)$ python3 -m pip install -e AtlantisCmd
+
+name: atlantis-dev
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  # Atlantis VCS
+  - subversion
+
+  # Atlantis build system
+  - autoconf
+  - automake
+  - c-compiler
+  - libnetcdf
+  - libxml2
+  - make
+  - pkg-config
+  - proj4
+
+  # R language
+  - r
+  - r-devtools
+
+  # R shiny web app framework for results exploration
+  - r-shiny
+  - rshiny-server-cmd
+
+  # Jupyter Lab for results analysis
+  - jupyterlab
+
+  # R kernel for Jupyter for results analysis
+  - r-irkernel
+  - r-repr
+  - r-irdisplay
+  - r-crayon
+  - r-pbdzmq
+
+  # Python packages for AtlantisCmd command processor
+  - arrow
+  - cliff
+  - cookiecutter
+  - f90nml
+  - gitpython
+  - pip
+  - python=3.9
+  - pyyaml
+  - pip:
+    - python-hglib
