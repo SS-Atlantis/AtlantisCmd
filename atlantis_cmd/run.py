@@ -19,6 +19,8 @@ Prepare for, execute, and gather the results of a run of the CSIRO Atlantis ecos
 """
 import logging
 import os
+import shlex
+import subprocess
 from pathlib import Path
 
 import arrow
@@ -130,14 +132,15 @@ def run(desc_file, results_dir, no_submit=False, quiet=False):
         output_dir=runs_dir,
         extra_context=cookiecutter_context,
     )
+    run_script_file = tmp_run_dir / "Atlantis.sh"
     _record_vcs_revisions(run_desc, tmp_run_dir)
     if not quiet:
         logger.info(f"Created temporary run directory: {tmp_run_dir}")
-
-    launched_job_msg = f"launched {run_id} run via {tmp_run_dir}/Atlantis.sh"
     if no_submit:
         return
-    return launched_job_msg
+    launch_cmd = f"{run_script_file}"
+    subprocess.Popen(shlex.split(launch_cmd))
+    return f"launched {run_id} run via {run_script_file}"
 
 
 def _calc_tmp_run_dir(runs_dir, run_id):
