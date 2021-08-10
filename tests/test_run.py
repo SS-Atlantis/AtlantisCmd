@@ -157,14 +157,25 @@ class TestRun:
         mock_load_run_desc_return,
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
+        run_desc,
         tmp_path,
+        caplog,
     ):
         results_dir = tmp_path / "results_dir"
+        caplog.set_level(logging.DEBUG)
+
         launch_job_msg = atlantis_cmd.run.run(
             tmp_path / "atlantis.yaml",
             results_dir,
             no_submit=True,
         )
+
+        assert caplog.records[-1].levelname == "INFO"
+        tmp_run_dir = (
+            Path(run_desc["paths"]["runs directory"])
+            / "SS-Atlantis_2021-08-04T105443-0700"
+        )
+        assert caplog.messages[-1] == f"Created temporary run directory: {tmp_run_dir}"
         assert launch_job_msg is None
 
     def test_submit(
@@ -174,19 +185,24 @@ class TestRun:
         mock_record_vcs_revisions,
         run_desc,
         tmp_path,
+        caplog,
     ):
         results_dir = tmp_path / "results_dir"
+        caplog.set_level(logging.DEBUG)
+
         launch_job_msg = atlantis_cmd.run.run(
             tmp_path / "atlantis.yaml",
             results_dir,
         )
-        run_id = run_desc["run id"]
-        runs_dir = Path(run_desc["paths"]["runs directory"])
-        expected = (
-            f"launched {run_id} run via "
-            f"{runs_dir}/SS-Atlantis_2021-08-04T105443-0700/Atlantis.sh"
+
+        assert caplog.records[-1].levelname == "INFO"
+        tmp_run_dir = (
+            Path(run_desc["paths"]["runs directory"])
+            / "SS-Atlantis_2021-08-04T105443-0700"
         )
-        assert launch_job_msg == expected
+        assert caplog.messages[-1] == f"Created temporary run directory: {tmp_run_dir}"
+        run_id = run_desc["run id"]
+        assert launch_job_msg == f"launched {run_id} run via {tmp_run_dir}/Atlantis.sh"
 
 
 class TestCalcCookiecutterContext:

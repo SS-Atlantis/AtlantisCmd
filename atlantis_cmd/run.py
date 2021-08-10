@@ -131,6 +131,8 @@ def run(desc_file, results_dir, no_submit=False, quiet=False):
         extra_context=cookiecutter_context,
     )
     _record_vcs_revisions(run_desc, tmp_run_dir)
+    if not quiet:
+        logger.info(f"Created temporary run directory: {tmp_run_dir}")
 
     launched_job_msg = f"launched {run_id} run via {tmp_run_dir}/Atlantis.sh"
     if no_submit:
