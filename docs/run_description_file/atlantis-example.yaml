@@ -9,9 +9,9 @@ paths:
 # global attributes of the initial conditions file.
 boxes: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_xy.bgm
 
-initial conditions: /ocean/dlatorne/Atlantis/salish-sea-atlantis-model/SS_init.nc
+initial conditions: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc
 
-groups: /ocean/dlatorne/Atlantis/salish-sea-atlantis-model/SS_grps.csv
+groups: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv
 
 parameters:
   # The run, forcing, physics, and biology parameters files are required for all runs,
