@@ -37,6 +37,7 @@ It is a command processor tool specific to the Salish Sea CSIRO Atlantis model t
    :maxdepth: 2
    :caption: Contents
 
+   subcommands
    run_description_file/index
    pkg_development
 
