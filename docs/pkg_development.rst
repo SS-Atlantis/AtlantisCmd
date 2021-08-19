@@ -114,7 +114,7 @@ beside your clone of AtlantisCmd `repository`_.
 
 Setting up an isolated development environment using `Conda`_ is recommended.
 Assuming that you have `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`atlantiscmd` that will have all of the Python packages necessary for development,
+you can create and activate an environment called :kbd:`atlantis-cmd` that will have all of the Python packages necessary for development,
 testing,
 and building the documentation with the commands below.
 
