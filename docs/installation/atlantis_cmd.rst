@@ -54,7 +54,7 @@ Clone the repositories from GitHub with:
 
 .. note::
 
-    The :kbd:`git clone` command above assumes that your are `connecting to GitHub using SSH`_.
+    The :kbd:`git clone` command above assumes that you are `connecting to GitHub using SSH`_.
     If it fails,
     please follow the instructions in our :ref:`moaddocs:SecureRemoteAccess` docs to set up your SSH keys and :ref:`moaddocs:CopyYourPublicSshKeyToGitHub`.
 
@@ -114,9 +114,9 @@ activating the :kbd:`atlantis-cmd` environment makes the :program:`atlantis` com
     (atlantis-cmd)$ pip install --editable ../NEMO-Cmd
     (atlantis-cmd)$ pip install --editable .
 
-The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolves.
+The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolve.
 
-You can confirm that the :kbd:`AtlantisCmd` package is installed and learn with version it is at with the command:
+You can confirm that the :kbd:`AtlantisCmd` package is installed and learn which version it is using with the command:
 
 .. code-block:: bash
 
