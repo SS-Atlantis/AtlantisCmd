@@ -77,7 +77,7 @@ and building the package documentation.
 .. code-block:: bash
 
     $ cd AtlantisCmd
-    $ conda env create -f env/environment-dev.yaml
+    $ conda env create -f envs/environment-dev.yaml
 
 Whenever you want to use the :program:`atlantis` command you will need to activate the :kbd:`atlantis-cmd` environment with the command:
 
