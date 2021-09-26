@@ -37,10 +37,13 @@
     :alt: Documentation Status
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
-    :alt: GitHub Workflow Status
+    :alt: pytest and test coverage analysis
 .. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     :alt: Codecov Testing Coverage Report
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
+      :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
+      :alt: CodeQL analysis
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
     :alt: Issue Tracker
