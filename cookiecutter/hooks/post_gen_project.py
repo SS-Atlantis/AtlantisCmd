@@ -12,7 +12,10 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-#
+
+# SPDX-License-Identifier: Apache-2.0
+
+
 """Post-rendering script to set up symlinks and copied files in temporary run directory
 for a run of the CSIRO Atlantis ecosystem model.
 """

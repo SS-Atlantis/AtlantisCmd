@@ -12,6 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# SPDX-License-Identifier: Apache-2.0
+
+
 """AtlantisCmd - A command-line tool for doing various operations associated with the
 Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model.
 AtlantisCmd is based on, and provides Atlantis-specific extensions for

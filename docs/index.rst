@@ -13,9 +13,12 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-*********************************************
+.. SPDX-License-Identifier: Apache-2.0
+
+
+*************************
 AtlantisCmd Documentation
-*********************************************
+*************************
 
 This is the documentation for the `AtlantisCmd`_ Python package.
 This package is developed and tested under Python 3.9.
