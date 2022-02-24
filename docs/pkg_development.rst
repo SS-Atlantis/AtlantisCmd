@@ -1,4 +1,5 @@
-.. Copyright 2021, Salish Sea Atlantis project contributors, The University of British Columbia, and CSIRO
+.. Copyright 2021 – present by the Salish Sea Atlantis project contributors,
+.. The University of British Columbia, and CSIRO.
 ..
 .. Licensed under the Apache License, Version 2.0 (the "License");
 .. you may not use this file except in compliance with the License.
@@ -423,7 +424,8 @@ License
     :alt: Licensed under the Apache License, Version 2.0
 
 The code and documentation of the Atlantis Command Processor project
-are copyright 2021 by Salish Sea Atlantis project contributors, The University of British Columbia, and CSIRO.
+are copyright 2021 – present by the Salish Sea Atlantis project contributors,
+The University of British Columbia, and CSIRO.
 
 They are licensed under the Apache License, Version 2.0.
 https://www.apache.org/licenses/LICENSE-2.0

@@ -24,22 +24,10 @@ setup_cfg = configparser.ConfigParser()
 setup_cfg.read(os.path.abspath("../setup.cfg"))
 project = setup_cfg["metadata"]["name"]
 
-author = "Doug Latornell"
-
-
-import datetime
+author = "the Salish Sea Atlantis project contributors, The University of British Columbia, and CSIRO"
 
 pkg_creation_year = 2021
-copyright_years = (
-    "{pkg_creation_year}".format(pkg_creation_year=pkg_creation_year)
-    if datetime.date.today().year == pkg_creation_year
-    else "{pkg_creation_year}-{today:%Y}".format(
-        pkg_creation_year=pkg_creation_year, today=datetime.date.today()
-    )
-)
-copyright = "{copyright_years}, {author}".format(
-    copyright_years=copyright_years, author=author
-)
+copyright = f"{pkg_creation_year}  – present by {author}"
 
 # The full version, including alpha/beta/rc tags
 import atlantis_cmd
