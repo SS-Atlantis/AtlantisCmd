@@ -1,5 +1,5 @@
-#  Copyright 2021, Salish Sea Atlantis project contributors, The University of British Columbia,
-#  and CSIRO.
+#  Copyright 2021 – present by the Salish Sea Atlantis project contributors,
+#  The University of British Columbia, and CSIRO.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
