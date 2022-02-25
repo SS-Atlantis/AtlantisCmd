@@ -19,14 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Cache conda pkgs
-        uses: actions/cache@v1
-        env:
-          # Increase this value to reset cache if envs/environment-test.yaml has not changed
-          CACHE_NUMBER: 0
-        with:
-          path: ~/conda_pkgs_dir
-          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('envs/environment-test.yaml') }}
 
       - name: Create conda environment
         uses: conda-incubator/setup-miniconda@v2
@@ -35,7 +27,6 @@ jobs:
            auto-activate-base: false
            channel-priority: strict
            environment-file: envs/environment-test.yaml
-           use-only-tar-bz2: true # Required for caching to work properly!
            python-version: ${{ matrix.python-version }}
            activate-environment: atlantis-cmd-test
 
