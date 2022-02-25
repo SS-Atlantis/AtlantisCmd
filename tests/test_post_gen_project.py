@@ -34,6 +34,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -54,6 +55,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -74,6 +76,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -94,6 +97,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -114,6 +118,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -135,6 +140,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
@@ -155,6 +161,7 @@ class TestPostGenProject:
         mock_calc_tmp_run_dir_return,
         mock_record_vcs_revisions,
         run_desc,
+        atlantis_executable,
         tmp_path,
     ):
         results_dir = tmp_path / "results_dir"
