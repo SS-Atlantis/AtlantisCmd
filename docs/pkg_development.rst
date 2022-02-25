@@ -26,8 +26,8 @@
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
     :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.9-blue.svg
-    :target: https://docs.python.org/3.9/
+.. image:: https://img.shields.io/badge/python-3.9+-blue.svg
+    :target: https://docs.python.org/3.10/
     :alt: Python Version
 .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd
@@ -59,11 +59,11 @@ The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing v
 Python Versions
 ===============
 
-.. image:: https://img.shields.io/badge/python-3.9-blue.svg
-    :target: https://docs.python.org/3.9/
+.. image:: https://img.shields.io/badge/python-3.9+-blue.svg
+    :target: https://docs.python.org/3.10/
     :alt: Python Version
 
-The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.9.
+The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.10.
 The package uses some Python language features that are not available in versions prior to 3.8,
 in particular:
 
@@ -278,7 +278,7 @@ The output looks something like:
     ( pkg_development: line   20) ok        https://atlantiscmd.readthedocs.io/en/latest/
     ( pkg_development: line   20) ok        https://img.shields.io/badge/code%20style-black-000000.svg
     (           index: line   36) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.9-blue.svg
+    ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.9+-blue.svg
     ( pkg_development: line   20) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
     ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
     ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd
