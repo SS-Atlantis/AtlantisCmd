@@ -110,7 +110,8 @@ The file name of the :kbd:`groups` file in the temporary run directory and the r
 :kbd:`paths` Section
 ====================
 
-The :kbd:`paths` section of the run description file is a collection of directory paths that are used during the run set-up phase of :command:`atlantis run`.
+The :kbd:`paths` section of the run description file is a collection of directory paths
+that are used during the run set-up phase of :command:`atlantis run`.
 
 An example :kbd:`paths` section:
 
@@ -148,16 +149,24 @@ An example :kbd:`paths` section:
 
 
 :kbd:`runs directory`
-  The path to the directory where run directories will be created by the :command:`atlantis run` sub-command.
+  The path to the directory where run directories will be created by
+  the :command:`atlantis run` sub-command.
 
 :kbd:`atlantis command`
-  The path to the :program:`atlantis` command processor executable file installed from the AtlantisCmd Python package.
+  The path to the :program:`atlantis` command processor executable file installed from
+  the AtlantisCmd Python package.
+
+  The :command:`atlantis run` sub-command confirms that the
+  :program:`atlantis` command processor executable file exists,
+  and exits with an error message if not.
 
 The paths may be relative or absolute,
-and may contain :kbd:`~` or :envvar:`$HOME` as alternative spellings of the user's home directory,
+and may contain :kbd:`~` or :envvar:`$HOME` as alternative spellings of the
+user's home directory,
 and :envvar:`$USER` as an alternative spelling of the user's userid.
 
-Absolute paths with environment variables are strongly recommended for portability and re-usability.
+Absolute paths with environment variables are strongly recommended for portability and
+re-usability.
 
 
 .. _Parameters:
