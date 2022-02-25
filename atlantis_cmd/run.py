@@ -201,14 +201,19 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
             resolve_path=True,
             run_dir=tmp_run_dir,
         )
+    atlantis_executable = atlantis_repo.joinpath(
+        "atlantis", "atlantismain", "atlantisMerged"
+    )
+    if not atlantis_executable.exists():
+        logger.error(f"{atlantis_executable} not found - did you forget to build it?")
+        nemo_cmd.prepare.remove_run_dir(tmp_run_dir)
+        raise SystemExit(2)
     cookiecutter_context = {
         "run_id": run_id,
         "run_desc_yaml": _resolve_path(desc_file),
         "tmp_run_dir": tmp_run_dir,
         "results_dir": _resolve_path(results_dir),
-        "atlantis_executable": atlantis_repo.joinpath(
-            "atlantis", "atlantismain", "atlantisMerged"
-        ),
+        "atlantis_executable": atlantis_executable,
         "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
             run_desc,
             ("paths", "atlantis command"),
