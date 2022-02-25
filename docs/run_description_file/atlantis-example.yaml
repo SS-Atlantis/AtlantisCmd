@@ -2,6 +2,7 @@ run id: SS-Atlantis
 
 paths:
   atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
+  atlantis executable name: atlantisMerged
   runs directory: /ocean/$USER/Atlantis/runs/
   atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
 

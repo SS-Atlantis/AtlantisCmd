@@ -26,7 +26,9 @@ from pathlib import Path
 
 shutil.copy2(Path("{{ cookiecutter.run_desc_yaml }}"), Path.cwd())
 
-Path("atlantisMerged").symlink_to(Path("{{ cookiecutter.atlantis_executable }}"))
+Path("{{ cookiecutter.atlantis_executable_name }}").symlink_to(
+    Path("{{ cookiecutter.atlantis_executable }}")
+)
 
 shutil.copy2(Path("{{ cookiecutter.boxes }}"), Path.cwd())
 

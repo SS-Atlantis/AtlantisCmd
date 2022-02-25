@@ -201,8 +201,11 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
             resolve_path=True,
             run_dir=tmp_run_dir,
         )
+    atlantis_executable_name = nemo_cmd.prepare.get_run_desc_value(
+        run_desc, ("paths", "atlantis executable name")
+    )
     atlantis_executable = atlantis_repo.joinpath(
-        "atlantis", "atlantismain", "atlantisMerged"
+        "atlantis", "atlantismain", atlantis_executable_name
     )
     if not atlantis_executable.exists():
         logger.error(f"{atlantis_executable} not found - did you forget to build it?")
@@ -214,6 +217,7 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "tmp_run_dir": tmp_run_dir,
         "results_dir": _resolve_path(results_dir),
         "atlantis_executable": atlantis_executable,
+        "atlantis_executable_name": atlantis_executable_name,
         "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
             run_desc,
             ("paths", "atlantis command"),

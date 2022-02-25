@@ -32,6 +32,13 @@ import atlantis_cmd.run
 def fixture_run_desc(tmp_path):
     atlantis_code_dir = tmp_path / "atlantis-trunk"
     atlantis_code_dir.mkdir()
+    atlantis_dir = atlantis_code_dir / "atlantis"
+    atlantis_dir.mkdir()
+    atlantismain_dir = atlantis_dir / "atlantismain"
+    atlantismain_dir.mkdir()
+    atlantis_executable_name = "atlantisMerged"
+    atlantis_executable = atlantismain_dir / atlantis_executable_name
+    atlantis_executable.write_bytes(b"")
     runs_dir = tmp_path / "runs_dir"
     runs_dir.mkdir()
     atlantis_cmd = tmp_path / "atlantis"
@@ -70,6 +77,7 @@ def fixture_run_desc(tmp_path):
 
             paths:
               atlantis code: {atlantis_code_dir}
+              atlantis executable name: {atlantis_executable_name}
               runs directory: {runs_dir}
               atlantis command: {atlantis_cmd}
 
@@ -105,17 +113,6 @@ def fixture_run_desc(tmp_path):
     with atlantis_yaml.open("rt") as f:
         run_desc = yaml.safe_load(f)
     return run_desc
-
-
-@pytest.fixture(name="atlantis_executable", scope="function")
-def fixture_atlantis_executable(run_desc):
-    atlantis_code = Path(run_desc["paths"]["atlantis code"])
-    atlantis_dir = atlantis_code / "atlantis"
-    atlantis_dir.mkdir()
-    atlantismain_dir = atlantis_dir / "atlantismain"
-    atlantismain_dir.mkdir()
-    atlantis_executable = atlantismain_dir / "atlantisMerged"
-    atlantis_executable.write_bytes(b"")
 
 
 @pytest.fixture
