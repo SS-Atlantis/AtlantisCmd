@@ -118,11 +118,34 @@ An example :kbd:`paths` section:
 
     paths:
       atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
+      atlantis executable name: atlantisMerged
       runs directory: /ocean/$USER/Atlantis/runs/
       atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
 
 :kbd:`atlantis code`
-  The path to the CSIRO Atlantis ecosystem model code Subversion checkout where the :program:`atlantisMerged` executable for the run is to be found.
+  The path to the CSIRO Atlantis ecosystem model code Subversion checkout where
+  the Atlantis executable for the run is to be found.
+
+  The :command:`atlantis run` sub-command confirms that the :kbd:`atlantis code`
+  directory exists,
+  and exits with an error message if not.
+
+:kbd:`atlantis executable name`
+  The name of the Atlantis executable to use for the run.
+  The executable name is typically :program:`atlantisMerged`,
+  but it may be different if you are with code that is under active development to add new
+  features.
+
+  This is not actually a path,
+  but it is included here because it is closely associated with :kbd:`atlantis code`.
+  The Atlantis executable is assumed to be located in the :kbd:`atlantis code` tree,
+  specifically,
+  at :file:`{atlantis code}/atlantis/atlantismain/{atlantis executable name}`.
+
+  The :command:`atlantis run` sub-command confirms that the
+  :kbd:`atlantis executable name` file exists,
+  and exits with an error message if not.
+
 
 :kbd:`runs directory`
   The path to the directory where run directories will be created by the :command:`atlantis run` sub-command.
