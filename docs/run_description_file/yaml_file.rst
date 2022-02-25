@@ -141,7 +141,7 @@ An example :kbd:`paths` section:
   but it is included here because it is closely associated with :kbd:`atlantis code`.
   The Atlantis executable is assumed to be located in the :kbd:`atlantis code` tree,
   specifically,
-  at :file:`{atlantis code}/atlantis/atlantismain/{atlantis executable name}`.
+  at :file:`{{atlantis code}}/atlantis/atlantismain/{{atlantis executable name}}`.
 
   The :command:`atlantis run` sub-command confirms that the
   :kbd:`atlantis executable name` file exists,
