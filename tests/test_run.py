@@ -438,7 +438,78 @@ class TestAtlantisBashScript:
             echo "working dir: $(pwd)" >${{RESULTS_DIR}}/stdout
 
             echo "Starting run at $(date)" >>${{RESULTS_DIR}}/stdout
-            ./atlantisMerged -i init_conditions.nc 0 -o {run_desc["output filename base"]}.nc \\
+            ./atlantisMerged \\
+              -i init_conditions.nc 0 -o {run_desc["output filename base"]}.nc \\
+              -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv \\
+              -d ${{RESULTS_DIR}} &>>${{RESULTS_DIR}}/stdout
+            ATLANTIS_EXIT_CODE=$?
+            echo "Ended run at $(date)" >>${{RESULTS_DIR}}/stdout
+
+            echo "Results gathering started at $(date)" >>${{RESULTS_DIR}}/stdout
+            ${{GATHER}} ${{RESULTS_DIR}} --debug &>>${{RESULTS_DIR}}/stdout
+            echo "Results gathering ended at $(date)" >>${{RESULTS_DIR}}/stdout
+
+            chmod -v go+rx ${{RESULTS_DIR}} &>>${{RESULTS_DIR}}/stdout
+            chmod -v g+rw ${{RESULTS_DIR}}/* &>>${{RESULTS_DIR}}/stdout
+            chmod -v o+r ${{RESULTS_DIR}}/* &>>${{RESULTS_DIR}}/stdout
+
+            echo "Deleting run directory" >>${{RESULTS_DIR}}/stdout
+            rmdir -v $(pwd) &>>${{RESULTS_DIR}}/stdout
+            echo "Finished at $(date)" >>${{RESULTS_DIR}}/stdout
+            exit ${{ATLANTIS_EXIT_CODE}}
+            """
+        )
+        tmp_run_dir_lines = [
+            line.strip()
+            for line in (tmp_run_dir / "Atlantis.sh").read_text().splitlines()
+        ]
+        assert tmp_run_dir_lines == [line.strip() for line in expected.splitlines()]
+
+    def test_alt_atlantis_executable_name(
+        self,
+        mock_load_run_desc_return,
+        mock_calc_tmp_run_dir_return,
+        mock_record_vcs_revisions,
+        run_desc,
+        tmp_path,
+        monkeypatch,
+    ):
+        monkeypatch.setitem(run_desc["paths"], "atlantis executable name", "foo")
+        atlantis_code_dir = Path(run_desc["paths"]["atlantis code"])
+        atlantis_executable_name = "foo"
+        atlantis_executable = (
+            atlantis_code_dir / "atlantis" / "atlantismain" / atlantis_executable_name
+        )
+        atlantis_executable.write_bytes(b"")
+
+        results_dir = tmp_path / "results_dir"
+        run_desc_yaml = tmp_path / "atlantis.yaml"
+        atlantis_cmd.run.run(run_desc_yaml, results_dir, no_submit=True)
+        tmp_run_dir = (
+            Path(run_desc["paths"]["runs directory"])
+            / "SS-Atlantis_2021-08-04T105443-0700"
+        )
+        expected = textwrap.dedent(
+            f"""\
+            #!/bin/bash
+
+            set -e  # abort on first error
+            set -u  # abort if undefined variable is encountered
+
+            RUN_ID="{run_desc['run id']}"
+            RUN_DESC="{run_desc_yaml}"
+            WORK_DIR="{tmp_run_dir}"
+            RESULTS_DIR="{results_dir}"
+            GATHER="{run_desc["paths"]["atlantis command"]} gather"
+
+            mkdir -p ${{RESULTS_DIR}}
+
+            cd ${{WORK_DIR}}
+            echo "working dir: $(pwd)" >${{RESULTS_DIR}}/stdout
+
+            echo "Starting run at $(date)" >>${{RESULTS_DIR}}/stdout
+            ./foo \\
+              -i init_conditions.nc 0 -o {run_desc["output filename base"]}.nc \\
               -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv \\
               -d ${{RESULTS_DIR}} &>>${{RESULTS_DIR}}/stdout
             ATLANTIS_EXIT_CODE=$?

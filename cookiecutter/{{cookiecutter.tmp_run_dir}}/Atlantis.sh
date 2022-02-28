@@ -15,7 +15,8 @@ cd ${WORK_DIR}
 echo "working dir: $(pwd)" >${RESULTS_DIR}/stdout
 
 echo "Starting run at $(date)" >>${RESULTS_DIR}/stdout
-./atlantisMerged -i init_conditions.nc 0 -o {{ cookiecutter.output_filename_base }}.nc \
+./{{ cookiecutter.atlantis_executable_name }} \
+  -i init_conditions.nc 0 -o {{ cookiecutter.output_filename_base }}.nc \
   -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv \
   -d ${RESULTS_DIR} &>>${RESULTS_DIR}/stdout
 ATLANTIS_EXIT_CODE=$?
