@@ -14,6 +14,8 @@ initial conditions: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc
 
 groups: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv
 
+migrations: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SalishMigrations.csv
+
 parameters:
   # The run, forcing, physics, and biology parameters files are required for all runs,
   # and they must be identified by those exact keys.
