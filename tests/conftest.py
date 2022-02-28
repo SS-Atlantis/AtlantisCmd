@@ -51,6 +51,8 @@ def fixture_run_desc(tmp_path):
     init_conditions.write_bytes(b"")
     groups_csv = model_config / "SS_grps.csv"
     groups_csv.write_text("")
+    migrations_csv = model_config / "SalishMigrations.csv"
+    migrations_csv.write_text("")
     run_params = model_config / "SS_run.prm"
     run_params.write_text("")
     forcing_params = model_config / "SS_forcing.prm"
@@ -86,6 +88,8 @@ def fixture_run_desc(tmp_path):
             initial conditions: {init_conditions}
 
             groups: {groups_csv}
+
+            migrations: {migrations_csv}
 
             parameters:
               run: {run_params}
