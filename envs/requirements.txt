@@ -21,7 +21,7 @@ click==8.0.4
 cliff==3.10.1
 cmd2==2.3.3
 colorama==0.4.4
-cookiecutter==1.7.3
+cookiecutter==2.1.1
 coverage==6.3.2
 cryptography==36.0.1
 dataclasses==0.8
