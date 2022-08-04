@@ -61,6 +61,8 @@ def fixture_run_desc(tmp_path):
     physics_params.write_text("")
     biology_params = model_config / "SS_biology.prm"
     biology_params.write_text("")
+    harvest_params = model_config / "SS_harvest.prm"
+    harvest_params.write_text("")
     model_config_input = model_config / "input"
     model_config_input.mkdir()
     hydro_forcing = model_config_input / "SS_hydro.nc"
@@ -96,6 +98,7 @@ def fixture_run_desc(tmp_path):
               forcing: {forcing_params}
               physics: {physics_params}
               biology: {biology_params}
+              harvest: {harvest_params}
 
             forcing:
               SS_hydro.nc:
