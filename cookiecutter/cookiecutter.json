@@ -14,7 +14,8 @@
     "run": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_run.prm",
     "forcing": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm",
     "physics": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm",
-    "biology": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm"
+    "biology": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm",
+    "harvest": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_harvest.prm"
   },
   "forcing": {
     "SS_hydro.nc": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/inputs/SS_hydro.nc",

@@ -93,7 +93,7 @@ An example of the basic configuration key-value pairs:
 The :kbd:`boxes`,
 :kbd:`initial conditions`,
 :kbd:`groups`,
-and :kbd:`migrations`  paths may be relative or absolute,
+and :kbd:`migrations` paths may be relative or absolute,
 and may contain :kbd:`~` or :envvar:`$HOME` as alternative spellings of the user's home directory,
 and :envvar:`$USER` as an alternative spelling of the user's userid.
 
@@ -197,6 +197,7 @@ An example :kbd:`parameters` section:
       forcing: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm
       physics: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_physics.prm
       biology: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_biology.prm
+      harvest: /ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_harvest.prm
 
 The paths may be relative or absolute,
 and may contain :kbd:`~` or :envvar:`$HOME` as alternative spellings of the user's home directory,
@@ -204,10 +205,11 @@ and :envvar:`$USER` as an alternative spelling of the user's userid.
 
 Absolute paths with environment variables are strongly recommended for portability and re-usability.
 
-The 4 keys :kbd:`run`,
+The 5 keys :kbd:`run`,
 :kbd:`forcing`,
 :kbd:`physics`,
-and :kbd:`biology` are required for all runs.
+:kbd:`biology`,
+and :kbd:`harvest` are required for all runs.
 
 :kbd:`run`
   The path to the run parameters file that will be passed to the :program:`atlantisMerged` executable by the :kbd:`-r` flag.
@@ -222,8 +224,12 @@ and :kbd:`biology` are required for all runs.
   The file name of the :kbd:`physics` parameters file in the temporary run directory and the results directory is always :file:`physics.prm`.
 
 :kbd:`biology`
-  The path to the biology parameters file that will be passed to the :program:`atlantisMerged` executable by the :kbd:`-p` flag.
+  The path to the biology parameters file that will be passed to the :program:`atlantisMerged` executable by the :kbd:`-b` flag.
   The file name of the :kbd:`biology` parameters file in the temporary run directory and the results directory is always :file:`biology.prm`.
+
+:kbd:`harvest`
+  The path to the harvest parameters file that will be passed to the :program:`atlantisMerged` executable by the :kbd:`-h` flag.
+  The file name of the :kbd:`harvest` parameters file in the temporary run directory and the results directory is always :file:`harvest.prm`.
 
 Additional,
 optional,
