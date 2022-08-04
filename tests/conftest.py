@@ -53,6 +53,8 @@ def fixture_run_desc(tmp_path):
     groups_csv.write_text("")
     migrations_csv = model_config / "SalishMigrations.csv"
     migrations_csv.write_text("")
+    fisheries_csv = model_config / "SalishFisheries.csv"
+    fisheries_csv.write_text("")
     run_params = model_config / "SS_run.prm"
     run_params.write_text("")
     forcing_params = model_config / "SS_forcing.prm"
@@ -93,6 +95,8 @@ def fixture_run_desc(tmp_path):
 
             migrations: {migrations_csv}
 
+            fisheries: {fisheries_csv}
+
             parameters:
               run: {run_params}
               forcing: {forcing_params}
@@ -107,7 +111,6 @@ def fixture_run_desc(tmp_path):
                 link to: {temp_forcing}
               SS_salt.nc:
                 link to: {salt_forcing}
-
 
             output filename base: outputSalishSea
 

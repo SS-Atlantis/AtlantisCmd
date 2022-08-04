@@ -229,7 +229,7 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert len(context) == 14
+        assert len(context) == 15
 
     def test_run_id(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -446,7 +446,8 @@ class TestAtlantisBashScript:
             echo "Starting run at $(date)" >>${{RESULTS_DIR}}/stdout
             ./atlantisMerged \\
               -i init_conditions.nc 0 -o {run_desc["output filename base"]}.nc \\
-              -r run.prm -f forcing.prm -p physics.prm -b biology.prm -h harvest.prm -s groups.csv -m migrations.csv \\
+              -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv -m migrations.csv \\
+              -h harvest.prm -q fisheries.csv \\
               -d ${{RESULTS_DIR}} &>>${{RESULTS_DIR}}/stdout
             ATLANTIS_EXIT_CODE=$?
             echo "Ended run at $(date)" >>${{RESULTS_DIR}}/stdout
@@ -516,7 +517,8 @@ class TestAtlantisBashScript:
             echo "Starting run at $(date)" >>${{RESULTS_DIR}}/stdout
             ./foo \\
               -i init_conditions.nc 0 -o {run_desc["output filename base"]}.nc \\
-              -r run.prm -f forcing.prm -p physics.prm -b biology.prm -h harvest.prm -s groups.csv -m migrations.csv \\
+              -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv -m migrations.csv \\
+              -h harvest.prm -q fisheries.csv \\
               -d ${{RESULTS_DIR}} &>>${{RESULTS_DIR}}/stdout
             ATLANTIS_EXIT_CODE=$?
             echo "Ended run at $(date)" >>${{RESULTS_DIR}}/stdout

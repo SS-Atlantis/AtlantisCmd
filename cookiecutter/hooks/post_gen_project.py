@@ -38,6 +38,8 @@ shutil.copy2(Path("{{ cookiecutter.groups }}"), "groups.csv")
 
 shutil.copy2(Path("{{ cookiecutter.migrations }}"), "migrations.csv")
 
+shutil.copy2(Path("{{ cookiecutter.fisheries }}"), "fisheries.csv")
+
 # Deserializing the parameters and forcing dicts from cookiecutter.json is a bit hacky,
 # especially because of the necessary single-quote to double-quote substitution.
 parameters = "{{ cookiecutter.parameters }}"

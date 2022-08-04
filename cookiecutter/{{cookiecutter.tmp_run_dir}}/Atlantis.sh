@@ -17,7 +17,8 @@ echo "working dir: $(pwd)" >${RESULTS_DIR}/stdout
 echo "Starting run at $(date)" >>${RESULTS_DIR}/stdout
 ./{{ cookiecutter.atlantis_executable_name }} \
   -i init_conditions.nc 0 -o {{ cookiecutter.output_filename_base }}.nc \
-  -r run.prm -f forcing.prm -p physics.prm -b biology.prm -h harvest.prm -s groups.csv -m migrations.csv \
+  -r run.prm -f forcing.prm -p physics.prm -b biology.prm -s groups.csv -m migrations.csv \
+  -h harvest.prm -q fisheries.csv \
   -d ${RESULTS_DIR} &>>${RESULTS_DIR}/stdout
 ATLANTIS_EXIT_CODE=$?
 echo "Ended run at $(date)" >>${RESULTS_DIR}/stdout
