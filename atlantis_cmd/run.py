@@ -236,6 +236,9 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "migrations": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("migrations",), resolve_path=True, run_dir=tmp_run_dir
         ),
+        "fisheries": nemo_cmd.prepare.get_run_desc_value(
+            run_desc, ("fisheries",), resolve_path=True, run_dir=tmp_run_dir
+        ),
         "parameters": parameters,
         "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
             run_desc, ("output filename base",)

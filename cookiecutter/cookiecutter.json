@@ -10,6 +10,7 @@
   "init_conditions": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_init.nc",
   "groups": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_grps.csv",
   "migrations": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SalishMigrations.csv",
+  "fisheries": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SalishFisheries.csv",
   "parameters": {
     "run": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_run.prm",
     "forcing": "/ocean/$USER/Atlantis/salish-sea-atlantis-model/SS_forcing.prm",
