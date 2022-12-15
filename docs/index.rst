@@ -21,7 +21,7 @@ AtlantisCmd Documentation
 *************************
 
 This is the documentation for the `AtlantisCmd`_ Python package.
-This package is developed and tested under Python 3.9.
+This package is developed and tested under Python 3.10.
 
 .. _AtlantisCmd: https://github.com/SS-Atlantis/AtlantisCmd
 
