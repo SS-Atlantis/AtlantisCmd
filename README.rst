@@ -17,6 +17,9 @@ Atlantis Command Processor
 .. image:: https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
     :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
     :alt: pytest and test coverage analysis
