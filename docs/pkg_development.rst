@@ -26,7 +26,7 @@
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
     :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.9+-blue.svg
+.. image:: https://img.shields.io/badge/python-3.10-blue.svg
     :target: https://docs.python.org/3.10/
     :alt: Python Version
 .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
@@ -62,7 +62,7 @@ The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing v
 Python Versions
 ===============
 
-.. image:: https://img.shields.io/badge/python-3.9+-blue.svg
+.. image:: https://img.shields.io/badge/python-3.10-blue.svg
     :target: https://docs.python.org/3.10/
     :alt: Python Version
 
@@ -277,7 +277,7 @@ The output looks something like:
     ( pkg_development: line  255) ok        https://coverage.readthedocs.io/en/latest/
     ( pkg_development: line   20) ok        https://black.readthedocs.io/en/stable/
     ( pkg_development: line  237) ok        https://docs.pytest.org/en/latest/
-    ( pkg_development: line   20) ok        https://docs.python.org/3.9/
+    ( pkg_development: line   20) ok        https://docs.python.org/3.10/
     ( pkg_development: line  101) ok        https://conda.io/en/latest/
     ( pkg_development: line  101) ok        https://docs.conda.io/en/latest/miniconda.html
     ( pkg_development: line  289) ok        https://git-scm.com/
@@ -286,7 +286,7 @@ The output looks something like:
     ( pkg_development: line   20) ok        https://atlantiscmd.readthedocs.io/en/latest/
     ( pkg_development: line   20) ok        https://img.shields.io/badge/code%20style-black-000000.svg
     (           index: line   36) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.9+-blue.svg
+    ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.10-blue.svg
     ( pkg_development: line   20) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
     ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
     ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd
