@@ -38,6 +38,9 @@
 .. image:: https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
     :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
     :alt: pytest and test coverage analysis
@@ -237,6 +240,11 @@ whenever you push changes to GitHub the documentation is automatically re-built 
 
 Link Checking the Documentation
 -------------------------------
+
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck
+
 
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
 With your :kbd:`atlantis-cmd)` environment activated,
