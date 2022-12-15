@@ -26,7 +26,7 @@
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
     :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.10-blue.svg
+.. image:: https://img.shields.io/badge/Python-3.10-blue?logo=python&label=Python&logoColor=gold
     :target: https://docs.python.org/3.10/
     :alt: Python Version
 .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
@@ -62,7 +62,7 @@ The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing v
 Python Versions
 ===============
 
-.. image:: https://img.shields.io/badge/python-3.10-blue.svg
+.. image:: https://img.shields.io/badge/Python-3.10-blue?logo=python&label=Python&logoColor=gold
     :target: https://docs.python.org/3.10/
     :alt: Python Version
 
