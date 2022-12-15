@@ -35,4 +35,4 @@ dependencies:
 
     # install of NEMO-Cmd & AtlantisCmd packages
     - git+https://github.com/SalishSeaCast/NEMO-Cmd.git#egg=NEMO-Cmd
-    - ../
+    - --editable ../
