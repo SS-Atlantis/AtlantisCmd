@@ -17,4 +17,4 @@ jobs:
     with:
       python-version: ${{ matrix.python-version }}
       conda-env-file: envs/environment-test.yaml
-      conda-env-name: reshapr-dev-test
+      conda-env-name: atlantis-cmd-test
