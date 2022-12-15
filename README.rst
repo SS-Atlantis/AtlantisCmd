@@ -20,14 +20,14 @@ Atlantis Command Processor
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
     :alt: Sphinx linkcheck
-.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/CI/badge.svg
-    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3ACI
-    :alt: pytest and test coverage analysis
+.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
+    :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     :alt: Codecov Testing Coverage Report
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
-      :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
+      :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Acodeql-analysis
       :alt: CodeQL analysis
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
