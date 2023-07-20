@@ -50,7 +50,7 @@ pluggy==1.0.0
 pre-commit==2.20.0
 prettytable==3.5.0
 pycparser==2.21
-Pygments==2.13.0
+Pygments==2.15.0
 pyOpenSSL==22.1.0
 pyperclip==1.8.2
 PySocks==1.7.1
