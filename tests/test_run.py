@@ -241,19 +241,19 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["run_desc_yaml"] == args.desc_file
+        assert context["run_desc_yaml"] == os.fspath(args.desc_file)
 
     def test_tmp_run_dir(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["tmp_run_dir"] == args.tmp_run_dir
+        assert context["tmp_run_dir"] == os.fspath(args.tmp_run_dir)
 
     def test_results_dir(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["results_dir"] == args.results_dir
+        assert context["results_dir"] == os.fspath(args.results_dir)
 
     def test_missing_atlantis_executable(self, run_desc, args, caplog, monkeypatch):
         monkeypatch.setitem(run_desc["paths"], "atlantis executable name", "foo")
@@ -279,8 +279,10 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        expected = Path(run_desc["paths"]["atlantis code"]).joinpath(
-            "atlantis", "atlantismain", "atlantisMerged"
+        expected = os.fspath(
+            Path(run_desc["paths"]["atlantis code"]).joinpath(
+                "atlantis", "atlantismain", "atlantisMerged"
+            )
         )
         assert context["atlantis_executable"] == expected
 
@@ -294,31 +296,35 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["atlantis_cmd"] == Path(run_desc["paths"]["atlantis command"])
+        assert context["atlantis_cmd"] == os.fspath(
+            Path(run_desc["paths"]["atlantis command"])
+        )
 
     def test_boxes(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["boxes"] == Path(run_desc["boxes"])
+        assert context["boxes"] == os.fspath(Path(run_desc["boxes"]))
 
     def test_init_conditions(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["init_conditions"] == Path(run_desc["initial conditions"])
+        assert context["init_conditions"] == os.fspath(
+            Path(run_desc["initial conditions"])
+        )
 
     def test_groups_csv(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["groups"] == Path(run_desc["groups"])
+        assert context["groups"] == os.fspath(Path(run_desc["groups"]))
 
     def test_migration_csv(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["migrations"] == Path(run_desc["migrations"])
+        assert context["migrations"] == os.fspath(Path(run_desc["migrations"]))
 
     def test_len_params(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -330,7 +336,9 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["parameters"]["run"] == Path(run_desc["parameters"]["run"])
+        assert context["parameters"]["run"] == os.fspath(
+            Path(run_desc["parameters"]["run"])
+        )
 
     def test_len_forcing(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -342,48 +350,48 @@ class TestCalcCookiecutterContext:
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["parameters"]["forcing"] == Path(
-            run_desc["parameters"]["forcing"]
+        assert context["parameters"]["forcing"] == os.fspath(
+            Path(run_desc["parameters"]["forcing"])
         )
 
     def test_physics_params(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["parameters"]["physics"] == Path(
-            run_desc["parameters"]["physics"]
+        assert context["parameters"]["physics"] == os.fspath(
+            Path(run_desc["parameters"]["physics"])
         )
 
     def test_biology_params(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["parameters"]["biology"] == Path(
-            run_desc["parameters"]["biology"]
+        assert context["parameters"]["biology"] == os.fspath(
+            Path(run_desc["parameters"]["biology"])
         )
 
     def test_hydro_forcing(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["forcing"]["SS_hydro.nc"] == Path(
-            run_desc["forcing"]["SS_hydro.nc"]["link to"]
+        assert context["forcing"]["SS_hydro.nc"] == os.fspath(
+            Path(run_desc["forcing"]["SS_hydro.nc"]["link to"])
         )
 
     def test_temperature_forcing(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["forcing"]["SS_temp.nc"] == Path(
-            run_desc["forcing"]["SS_temp.nc"]["link to"]
+        assert context["forcing"]["SS_temp.nc"] == os.fspath(
+            Path(run_desc["forcing"]["SS_temp.nc"]["link to"])
         )
 
     def test_salinity_forcing(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["forcing"]["SS_salt.nc"] == Path(
-            run_desc["forcing"]["SS_salt.nc"]["link to"]
+        assert context["forcing"]["SS_salt.nc"] == os.fspath(
+            Path(run_desc["forcing"]["SS_salt.nc"]["link to"])
         )
 
     def test_output_filename_base(self, run_desc, args):

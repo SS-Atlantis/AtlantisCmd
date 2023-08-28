@@ -189,17 +189,21 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
     params_dict = nemo_cmd.prepare.get_run_desc_value(run_desc, ("parameters",))
     parameters = {}
     for key, path in params_dict.items():
-        parameters[key] = nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("parameters", key), resolve_path=True, run_dir=tmp_run_dir
+        parameters[key] = os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc, ("parameters", key), resolve_path=True, run_dir=tmp_run_dir
+            )
         )
     forcing_dict = nemo_cmd.prepare.get_run_desc_value(run_desc, ("forcing",))
     forcing = {}
     for key, path in forcing_dict.items():
-        forcing[key] = nemo_cmd.prepare.get_run_desc_value(
-            run_desc,
-            ("forcing", key, "link to"),
-            resolve_path=True,
-            run_dir=tmp_run_dir,
+        forcing[key] = os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc,
+                ("forcing", key, "link to"),
+                resolve_path=True,
+                run_dir=tmp_run_dir,
+            )
         )
     atlantis_executable_name = nemo_cmd.prepare.get_run_desc_value(
         run_desc, ("paths", "atlantis executable name")
@@ -213,31 +217,46 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         raise SystemExit(2)
     cookiecutter_context = {
         "run_id": run_id,
-        "run_desc_yaml": _resolve_path(desc_file),
-        "tmp_run_dir": tmp_run_dir,
-        "results_dir": _resolve_path(results_dir),
-        "atlantis_executable": atlantis_executable,
+        "run_desc_yaml": os.fspath(_resolve_path(desc_file)),
+        "tmp_run_dir": os.fspath(tmp_run_dir),
+        "results_dir": os.fspath(_resolve_path(results_dir)),
+        "atlantis_executable": os.fspath(atlantis_executable),
         "atlantis_executable_name": atlantis_executable_name,
-        "atlantis_cmd": nemo_cmd.prepare.get_run_desc_value(
-            run_desc,
-            ("paths", "atlantis command"),
-            resolve_path=True,
-            run_dir=tmp_run_dir,
+        "atlantis_cmd": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc,
+                ("paths", "atlantis command"),
+                resolve_path=True,
+                run_dir=tmp_run_dir,
+            )
         ),
-        "boxes": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("boxes",), resolve_path=True, run_dir=tmp_run_dir
+        "boxes": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc, ("boxes",), resolve_path=True, run_dir=tmp_run_dir
+            )
         ),
-        "init_conditions": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("initial conditions",), resolve_path=True, run_dir=tmp_run_dir
+        "init_conditions": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc,
+                ("initial conditions",),
+                resolve_path=True,
+                run_dir=tmp_run_dir,
+            )
         ),
-        "groups": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("groups",), resolve_path=True, run_dir=tmp_run_dir
+        "groups": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc, ("groups",), resolve_path=True, run_dir=tmp_run_dir
+            )
         ),
-        "migrations": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("migrations",), resolve_path=True, run_dir=tmp_run_dir
+        "migrations": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc, ("migrations",), resolve_path=True, run_dir=tmp_run_dir
+            )
         ),
-        "fisheries": nemo_cmd.prepare.get_run_desc_value(
-            run_desc, ("fisheries",), resolve_path=True, run_dir=tmp_run_dir
+        "fisheries": os.fspath(
+            nemo_cmd.prepare.get_run_desc_value(
+                run_desc, ("fisheries",), resolve_path=True, run_dir=tmp_run_dir
+            )
         ),
         "parameters": parameters,
         "output_filename_base": nemo_cmd.prepare.get_run_desc_value(
