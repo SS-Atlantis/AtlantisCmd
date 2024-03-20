@@ -10,7 +10,7 @@ autopage==0.5.1
 Babel==2.12.1
 backports.functools-lru-cache==1.6.5
 binaryornot==0.4.4
-black==23.7.0
+black==24.3.0
 Brotli==1.0.9
 certifi==2023.7.22
 cffi==1.15.1
