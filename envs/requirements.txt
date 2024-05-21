@@ -61,7 +61,7 @@ python-hglib==2.6.2
 python-slugify==8.0.1
 pytz==2023.3
 PyYAML==6.0.1
-requests==2.31.0
+requests==2.32.0
 rich==13.5.1
 setuptools==68.1.2
 six==1.16.0
