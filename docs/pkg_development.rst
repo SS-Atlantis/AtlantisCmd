@@ -127,7 +127,7 @@ you can create and activate an environment called :kbd:`atlantis-cmd` that will 
 testing,
 and building the documentation with the commands below.
 
-.. _Conda: https://conda.io/en/latest/
+.. _Conda: https://docs.conda.io/en/latest/
 .. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
 
 .. code-block:: bash
