@@ -206,27 +206,39 @@ The output looks something like:
 
 .. code-block:: text
 
-    Running Sphinx v4.1.1
-    loading pickled environment... done
+    Removing everything under '_build'...
+    Running Sphinx v8.1.3
+    loading translations [en]... done
+    making output directory... done
+    loading intersphinx inventory 'moaddocs' from https://ubc-moad-docs.readthedocs.io/en/latest/objects.inv ...
+    loading intersphinx inventory 'nemocmd' from https://nemo-cmd.readthedocs.io/en/latest/objects.inv ...
     building [mo]: targets for 0 po files that are out of date
-    building [html]: targets for 1 source files that are out of date
-    updating environment: 0 added, 1 changed, 0 removed
-    reading sources... [100%] pkg_development
+    writing output...
+    building [html]: targets for 7 source files that are out of date
+    updating environment: [new config] 7 added, 0 changed, 0 removed
+    reading sources... [100%] subcommands
     looking for now-outdated files... none found
     pickling environment... done
     checking consistency... done
     preparing documents... done
-    writing output... [ 50%] index
-    writing output... [100%] pkg_development
+    copying assets...
+    copying static files...
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/language_data.js
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/basic.css
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/documentation_options.js
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/js/versions.js
+    copying static files: done
+    copying extra files...
+    copying extra files: done
+    copying assets: done
+    writing output... [100%] subcommands
     generating indices... genindex done
     writing additional pages... search done
-    copying static files... done
-    copying extra files... done
     dumping search index in English (code: en)... done
     dumping object inventory... done
     build succeeded.
 
-    The HTML pages are in docs/_build.
+    The HTML pages are in _build/html.
 
 
 The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
@@ -259,51 +271,73 @@ The output looks something like:
 
 .. code-block:: text
 
-    Running Sphinx v4.1.1
-    loading pickled environment... done
+    Removing everything under '_build'...
+    Running Sphinx v8.1.3
+    loading translations [en]... done
+    making output directory... done
+    loading intersphinx inventory 'moaddocs' from https://ubc-moad-docs.readthedocs.io/en/latest/objects.inv ...
+    loading intersphinx inventory 'nemocmd' from https://nemo-cmd.readthedocs.io/en/latest/objects.inv ...
     building [mo]: targets for 0 po files that are out of date
-    building [linkcheck]: targets for 2 source files that are out of date
-    updating environment: 0 added, 1 changed, 0 removed
-    reading sources... [100%] pkg_development
-
+    writing output...
+    building [linkcheck]: targets for 7 source files that are out of date
+    updating environment: [new config] 7 added, 0 changed, 0 removed
+    reading sources... [100%] subcommands
     looking for now-outdated files... none found
     pickling environment... done
     checking consistency... done
     preparing documents... done
-    writing output... [ 50%] index
-    writing output... [100%] pkg_development
+    copying assets...
+    copying assets: done
+    writing output... [100%] subcommands
 
-
-    ( pkg_development: line  255) ok        https://coverage.readthedocs.io/en/latest/
-    ( pkg_development: line   20) ok        https://black.readthedocs.io/en/stable/
-    ( pkg_development: line  237) ok        https://docs.pytest.org/en/latest/
-    ( pkg_development: line   20) ok        https://docs.python.org/3.10/
-    ( pkg_development: line  101) ok        https://conda.io/en/latest/
-    ( pkg_development: line  101) ok        https://docs.conda.io/en/latest/miniconda.html
-    ( pkg_development: line  289) ok        https://git-scm.com/
-    ( pkg_development: line   58) ok        https://docs.python.org/3/reference/lexical_analysis.html#f-strings
-    ( pkg_development: line   89) ok        https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-    ( pkg_development: line   20) ok        https://atlantiscmd.readthedocs.io/en/latest/
-    ( pkg_development: line   20) ok        https://img.shields.io/badge/code%20style-black-000000.svg
-    (           index: line   36) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    ( pkg_development: line   20) ok        https://img.shields.io/badge/python-3.10-blue.svg
-    ( pkg_development: line   20) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
-    ( pkg_development: line   20) ok        https://github.com/SS-Atlantis/AtlantisCmd
-    ( pkg_development: line   42) ok        https://github.com/SalishSeaCast/NEMO-Cmd
-    ( pkg_development: line   20) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
-    ( pkg_development: line   89) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#secureremoteaccess
-    ( pkg_development: line   54) ok        https://www.python.org/
-    ( pkg_development: line   89) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
-    ( pkg_development: line  135) ok        https://www.python.org/dev/peps/pep-0008/
-    ( pkg_development: line  165) ok        https://www.sphinx-doc.org/en/master/
-    ( pkg_development: line  165) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-    ( pkg_development: line   20) ok        https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
-    ( pkg_development: line  159) ok        https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    (           index: line   36) ok        https://www.apache.org/licenses/LICENSE-2.0
+    ( pkg_development: line   23) ok        https://atlantiscmd.readthedocs.io/en/latest/
+    ( pkg_development: line   23) ok        https://black.readthedocs.io/en/stable/
+    ( pkg_development: line   47) ok        https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
+    ( pkg_development: line  360) ok        https://coverage.readthedocs.io/en/latest/
+    ( pkg_development: line   23) ok        https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
+    (     subcommands: line  119) ok        https://cookiecutter.readthedocs.io/en/latest/
+    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/miniconda.html
+    ( pkg_development: line  409) ok        https://docs.github.com/en/actions
+    (installation/atlantis_cmd: line   60) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/
+    ( pkg_development: line   23) ok        https://docs.python.org/3.11/
+    ( pkg_development: line   73) ok        https://docs.python.org/3/reference/lexical_analysis.html#f-strings
+    ( pkg_development: line  330) ok        https://docs.pytest.org/en/latest/
+    ( pkg_development: line  423) ok        https://git-scm.com/
+    (           index: line   30) ok        https://docs.openstack.org/cliff/latest/
+    ( pkg_development: line   50) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
+    (run_description_file/index: line   30) redirect  https://bitbucket.csiro.au/users/por07g/repos/salish-sea-atlantis-model/browse - with Found to https://bitbucket.csiro.au/login
+    (           index: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd
+    ( pkg_development: line  398) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
+    ( pkg_development: line   44) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
+    ( pkg_development: line   29) ok        https://img.shields.io/badge/Python-3.11-blue?logo=python&label=Python&logoColor=gold
+    ( pkg_development: line   35) ok        https://img.shields.io/badge/code%20style-black-000000.svg
+    ( pkg_development: line   41) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
+    (           index: line   58) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    ( pkg_development: line   32) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+    ( pkg_development: line   53) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
+    (installation/atlantis_cmd: line   46) ok        https://nemo-cmd.readthedocs.io/en/latest/
+    (     subcommands: line  181) ok        https://nemo-cmd.readthedocs.io/en/latest/subcommands.html#nemo-gather
+    ( pkg_development: line  360) ok        https://pytest-cov.readthedocs.io/en/latest/
+    ( pkg_development: line  159) ok        https://peps.python.org/pep-0008/
+    ( pkg_development: line  398) ok        https://github.com/SS-Atlantis/AtlantisCmd/commits/main
+    (run_description_file/index: line   25) ok        https://pyyaml.org/wiki/PyYAMLDocumentation
+    (           index: line   30) ok        https://github.com/SalishSeaCast/NEMO-Cmd
+    ( pkg_development: line  187) ok        https://readthedocs.org/projects/atlantiscmd/badge/?version=latest
+    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
+    (           index: line   56) ok        https://www.apache.org/licenses/LICENSE-2.0
+    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#secureremoteaccess
+    ( pkg_development: line   69) ok        https://www.python.org/
+    ( pkg_development: line   38) ok        https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
+    ( pkg_development: line  191) ok        https://www.sphinx-doc.org/en/master/
+    ( pkg_development: line  191) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
     build succeeded.
 
-Look for any errors in the above output or in _build/linkcheck/output.txt
+    Look for any errors in the above output or in _build/linkcheck/output.txt
 
 :command:`make linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
 
@@ -333,16 +367,17 @@ The output looks something like:
 
 .. code-block:: text
 
-    ================================ test session starts =================================
-    platform linux -- Python 3.9.6, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
-    Using --randomly-seed=3861485000
-    rootdir: /media/doug/warehouse/Atlantis/AtlantisCmd
-    plugins: randomly-3.8.0, cov-2.12.1
-    collected 1 item
+================================== test session starts ===================================
+platform linux -- Python 3.11.10, pytest-8.3.3, pluggy-1.5.0
+Using --randomly-seed=3048892722
+rootdir: /media/doug/warehouse/Atlantis/AtlantisCmd
+plugins: randomly-3.15.0, cov-6.0.0
+collected 49 items
 
-    tests/test_run.py .                                                                                                                                                                                                                                                                                            [100%]
+tests/test_run.py .........................................                         [ 83%]
+tests/test_post_gen_project.py ........                                             [100%]
 
-    ================================= 1 passed in 0.17s ==================================
+=================================== 49 passed in 0.76s ===================================
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
