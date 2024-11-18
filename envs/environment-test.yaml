@@ -22,17 +22,16 @@ dependencies:
   # For unit tests
   - coverage
   - pytest-cov
+  - pytest-randomly
 
-  # For documentation
-  - sphinx
-  - sphinx_rtd_theme
+  # For documentation links checking
+  - sphinx==8.1.3
+  - sphinx-notfound-page==1.0.4
+  - sphinx-rtd-theme==3.0.0
 
   - pip:
     - python-hglib
 
-    # For unit tests
-    - pytest-randomly
-
-    # install of NEMO-Cmd & AtlantisCmd packages
+    # install NEMO-Cmd and AtlantisCmd packages in editable mode
     - git+https://github.com/SalishSeaCast/NEMO-Cmd.git#egg=NEMO-Cmd
     - --editable ../

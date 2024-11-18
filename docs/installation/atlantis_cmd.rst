@@ -74,7 +74,7 @@ The environment will also include additional packages that are used for developm
 testing,
 and building the package documentation.
 
-.. _Conda: https://conda.io/en/latest/
+.. _Conda: https://docs.conda.io/en/latest/
 .. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
 
 .. code-block:: bash
