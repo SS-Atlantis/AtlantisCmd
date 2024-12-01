@@ -22,40 +22,51 @@
 :kbd:`AtlantisCmd` Package Development
 **************************************
 
-
-.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    :target: https://www.apache.org/licenses/LICENSE-2.0
-    :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/Python-3.11-blue?logo=python&label=Python&logoColor=gold
-    :target: https://docs.python.org/3.11/
-    :alt: Python Version
-.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    :target: https://github.com/SS-Atlantis/AtlantisCmd
-    :alt: Git on GitHub
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://black.readthedocs.io/en/stable/
-    :alt: The uncompromising Python code formatter
-.. image:: https://readthedocs.org/projects/AtlantisCmd/badge/?version=latest
-    :target: https://atlantiscmd.readthedocs.io/en/latest/
-    :alt: Documentation Status
-.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
-    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
-    :alt: Sphinx linkcheck
-.. image:: https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
-    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
-    :alt: Pytest with Coverage Status
-.. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
-    :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
-    :alt: Codecov Testing Coverage Report
-.. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
-    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
-    :alt: CodeQL analysis
-.. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
-    :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
-    :alt: Issue Tracker
-.. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
-    :target: https://github.com/pypa/hatch
-    :alt: Hatch project
++----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Continuous Integration** | .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg                                                                                          |
+|                            |      :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:pytest-with-coverage                                                                                                 |
+|                            |      :alt: Pytest with Coverage Status                                                                                                                                                               |
+|                            | .. image:: https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg                                                                                                                 |
+|                            |      :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd                                                                                                                                      |
+|                            |      :alt: Codecov Testing Coverage Report                                                                                                                                                           |
+|                            | .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg                                                                                               |
+|                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:CodeQL                                                                                                                |
+|                            |     :alt: CodeQL analysis                                                                                                                                                                            |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Documentation**          | .. image:: https://readthedocs.org/projects/nemo-nowcast/badge/?version=latest                                                                                                                       |
+|                            |     :target: https://nemo-nowcast.readthedocs.io/en/latest/                                                                                                                                          |
+|                            |     :alt: Documentation Status                                                                                                                                                                       |
+|                            | .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/sphinx-linkcheck.yaml/badge.svg                                                                                              |
+|                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:sphinx-linkcheck                                                                                                      |
+|                            |     :alt: Sphinx linkcheck                                                                                                                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Package**                | .. image:: https://img.shields.io/github/v/release/SS-Atlantis/AtlantisCmd?logo=github                                                                                                               |
+|                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd/releases                                                                                                                                     |
+|                            |     :alt: Releases                                                                                                                                                                                   |
+|                            | .. image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python    |
+|                            |      :target: https://docs.python.org/3                                                                                                                                                              |
+|                            |      :alt: Python Version from PEP 621 TOML                                                                                                                                                          |
+|                            | .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github                                                                                                                  |
+|                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues                                                                                                                                       |
+|                            |     :alt: Issue Tracker                                                                                                                                                                              |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Meta**                   | .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg                                                                                                                                |
+|                            |     :target: https://www.apache.org/licenses/LICENSE-2.0                                                                                                                                             |
+|                            |     :alt: Licensed under the Apache License, Version 2.0                                                                                                                                             |
+|                            | .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github                                                                                                                   |
+|                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd                                                                                                                                              |
+|                            |     :alt: Git on GitHub                                                                                                                                                                              |
+|                            +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                            | .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white                                                                                              |
+|                            |     :target: https://pre-commit.com                                                                                                                                                                  |
+|                            |     :alt: pre-commit                                                                                                                                                                                 |
+|                            | .. image:: https://img.shields.io/badge/code%20style-black-000000.svg                                                                                                                                |
+|                            |     :target: https://black.readthedocs.io/en/stable/                                                                                                                                                 |
+|                            |     :alt: The uncompromising Python code formatter                                                                                                                                                   |
+|                            | .. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg                                                                                                                                |
+|                            |     :target: https://github.com/pypa/hatch                                                                                                                                                           |
+|                            |     :alt: Hatch project                                                                                                                                                                              |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model. AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
 
@@ -65,8 +76,8 @@ The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing v
 Python Versions
 ===============
 
-.. image:: https://img.shields.io/badge/Python-3.11-blue?logo=python&label=Python&logoColor=gold
-    :target: https://docs.python.org/3.11/
+.. image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
+    :target: https://docs.python.org/3
     :alt: Python Version
 
 The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.10.
@@ -155,31 +166,35 @@ To deactivate the environment use:
 Coding Style
 ============
 
+.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+    :target: https://pre-commit.com
+    :alt: pre-commit
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 
-The :kbd:`AtlantisCmd` package uses the `black`_ code formatting tool to maintain a coding style that is very close to `PEP 8`_.
+The :kbd:`AtlantisCmd` package uses the Git pre-commit hooks managed by `pre-commit`_
+to maintain consistent code style and and other aspects of code,
+docs,
+and repo QA.
 
-.. _black: https://black.readthedocs.io/en/stable/
-.. _PEP 8: https://peps.python.org/pep-0008/
+.. _pre-commit: https://pre-commit.com/
 
-:command:`black` is installed as part of the :ref:`AtlantisCmdDevelopmentEnvironment` setup.
-
-To run :command:`black` on the entire code-base use:
+To install the ``pre-commit`` hooks in a newly cloned repo,
+activate the conda development environment,
+and run :command:`pre-commit install`:
 
 .. code-block:: bash
 
     $ cd AtlantisCmd
     $ conda activate atlantis_cmd
-    (atlantis-cmd)$ black ./
+    (atlantis-cmd)$ pre-commit install
 
-in the repository root directory.
-The output looks something like:
+.. note::
+    You only need to install the hooks once immediately after you make a new clone of the
+    `AtlantisCmd repository`_ and build your :ref:`AtlantisCmdDevelopmentEnvironment`.
 
-.. code-block:: text
-
-    **add example black output**
+.. _AtlantisCmd repository: https://github.com/SS-Atlantis/AtlantisCmd
 
 
 .. _AtlantisCmdBuildingTheDocumentation:
@@ -194,7 +209,7 @@ Building the Documentation
 The documentation for the :kbd:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Creating a :ref:`AtlantisCmdDevelopmentEnvironment` as described above includes the installation of Sphinx.
 Building the documentation is driven by the :file:`docs/Makefile`.
-With your :kbd:`salishsea-nowcast` development environment activated,
+With your :kbd:`atlantis-cmd` development environment activated,
 use:
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
