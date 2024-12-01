@@ -513,7 +513,7 @@ The release process steps are:
 #. Use :command:`hatch version release` to bump the version from ``.devn`` to the next release
    version identifier
 
-#. Commit the version bump and change log update
+#. Commit the version bump
 
 #. Create and annotated tag for the release with :guilabel:`Git -> New Tag...` in PyCharm
    or :command:`git tag -e -a vyy.n`
@@ -549,6 +549,6 @@ The release process steps are:
 #. Use :command:`hatch version minor,dev` to bump the version for the next development cycle,
    or use :command:`hatch version major,minor,dev` for a year rollover version bump
 
-#. Commit the version bump and change log update
+#. Commit the version bump
 
 #. Push the version bump commit to GitHub
