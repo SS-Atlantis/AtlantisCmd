@@ -20,8 +20,8 @@
 
 Atlantis Ecosystem Model Command Processor
 
-This module is connected to the `atlantis` command via a console_scripts
-entry point in setup.py.
+This module is connected to the :command:`atlantis` command via a scripts and
+entry-points configuration in :file:`pyproject.toml`.
 """
 import sys
 
