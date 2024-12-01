@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import importlib.metadata
 import os
 import sys
 
@@ -18,21 +19,17 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-import configparser
-
-setup_cfg = configparser.ConfigParser()
-setup_cfg.read(os.path.abspath("../setup.cfg"))
-project = setup_cfg["metadata"]["name"]
+project = "AtlantisCmd"
 
 author = "the Salish Sea Atlantis project contributors, The University of British Columbia, and CSIRO"
 
 pkg_creation_year = 2021
 copyright = f"{pkg_creation_year}  – present by {author}"
 
+# The short X.Y version
+version = importlib.metadata.version(project)
 # The full version, including alpha/beta/rc tags
-import atlantis_cmd
-
-release = atlantis_cmd.__version__
+release = version
 
 
 # -- General configuration ---------------------------------------------------
