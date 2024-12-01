@@ -28,8 +28,9 @@ dependencies:
   - python=3.11
   - pyyaml
 
-  # For code style and repo QA
+  # For coding style, repo QA, and pkg management
   - black
+  - hatch
   - pre-commit
 
   # For unit tests

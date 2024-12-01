@@ -16,22 +16,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""AtlantisCmd - A command-line tool for doing various operations associated with the
-Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model.
-AtlantisCmd is based on, and provides Atlantis-specific extensions for
-https://github.com/SalishSeaCast/NEMO-Cmd.
-"""
-import setuptools
-
-
-setuptools.setup(
-    entry_points={
-        # The atlantis command:
-        "console_scripts": ["atlantis = atlantis_cmd.main:main"],
-        # Sub-command plug-ins:
-        "atlantis.app": [
-            "gather = nemo_cmd.gather:Gather",
-            "run = atlantis_cmd.run:Run",
-        ],
-    }
-)
+__version__ = "22.1.dev0"  # pragma: no cover

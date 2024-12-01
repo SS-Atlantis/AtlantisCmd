@@ -1,0 +1,66 @@
+# Copyright 2021 – present by the Salish Sea Atlantis project contributors,
+# The University of British Columbia, and CSIRO.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SPDX-License-Identifier: Apache-2.0
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "AtlantisCmd"
+dynamic = [ "version" ]
+description = "Salish Sea CSIRO Atlantis ecosystem model command processor"
+readme = "README.rst"
+requires-python = ">=3.10"
+license-files = { paths = ["LICENSE"] }
+authors = [
+    {name = "Doug Latornell", email = "dlatornell@eoas.ubc.ca"},
+]
+keywords = ["automation", "oceanography", "ocean modelling", "UBC-MOAD"]
+dependencies = [
+    # see envs/environment-dev.yaml for conda environment dev installation,
+    # see envs/requirements.txt for package versions used during recent development
+    "arrow",
+    "cliff",
+    "cookiecutter",
+    "f90nml",
+    "gitpython",
+    "python-hglib",
+    "pyyaml",
+    # "NEMO-Cmd"  # use python -m pip install --editable NEMO-Cmd/
+]
+
+[project.urls]
+"Documentation" = "https://atlantiscmd.readthedocs.io/en/latest/"
+"Changelog" = "https://github.com/SS-Atlantis/AtlantisCmd/releases"
+"Issue Tracker" = "https://github.com/SS-Atlantis/AtlantisCmd/issues"
+"Source Code" = "https://github.com/SS-Atlantis/AtlantisCmd"
+
+[project.scripts]
+atlantis = "atlantis_cmd.main:main"
+
+[project.entry-points."atlantis.app"]
+gather = "nemo_cmd.gather:Gather"
+run = "atlantis_cmd.run:Run"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["atlantis_cmd"]
+
+[tool.hatch.version]
+path = "atlantis_cmd/__about__.py"
