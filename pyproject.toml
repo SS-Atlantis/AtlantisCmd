@@ -23,8 +23,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "AtlantisCmd"
-#dynamic = [ "version" ]
-version = "22.1.dev0"
+dynamic = [ "version" ]
 description = "Salish Sea CSIRO Atlantis ecosystem model command processor"
 readme = "README.rst"
 requires-python = ">=3.10"
@@ -62,3 +61,6 @@ run = "atlantis_cmd.run:Run"
 
 [tool.hatch.build.targets.wheel]
 packages = ["atlantis_cmd"]
+
+[tool.hatch.version]
+path = "atlantis_cmd/__about__.py"
