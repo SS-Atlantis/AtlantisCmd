@@ -17,8 +17,8 @@
 
 
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 
 [project]
@@ -28,8 +28,7 @@ version = "22.1.dev0"
 description = "Salish Sea CSIRO Atlantis ecosystem model command processor"
 readme = "README.rst"
 requires-python = ">=3.10"
-license = {text = "Apache License, Version 2.0"}
-#license-files = { paths = ["LICENSE"] }
+license-files = { paths = ["LICENSE"] }
 authors = [
     {name = "Doug Latornell", email = "dlatornell@eoas.ubc.ca"},
 ]
@@ -61,8 +60,5 @@ gather = "nemo_cmd.gather:Gather"
 run = "atlantis_cmd.run:Run"
 
 
-[tool.setuptools.packages.find]
-where = ["."]
-
-[tool.setuptools]
-include-package-data = true
+[tool.hatch.build.targets.wheel]
+packages = ["atlantis_cmd"]

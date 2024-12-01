@@ -48,11 +48,14 @@
     :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     :alt: Codecov Testing Coverage Report
 .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
-      :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
-      :alt: CodeQL analysis
+    :target: https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:codeql-analysis
+    :alt: CodeQL analysis
 .. image:: https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
     :target: https://github.com/SS-Atlantis/AtlantisCmd/issues
     :alt: Issue Tracker
+.. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    :target: https://github.com/pypa/hatch
+    :alt: Hatch project
 
 The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model. AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
 
