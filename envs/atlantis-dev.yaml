@@ -6,8 +6,6 @@
 #
 #   $ conda env create -f envs/atlantis-dev.yaml
 #   $ conda activate atlantis-dev
-#   (atlantis-dev)$ python3 -m pip install -e NEMO-Cmd
-#   (atlantis-dev)$ python3 -m pip install -e AtlantisCmd
 
 name: atlantis-dev
 
