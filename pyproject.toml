@@ -24,7 +24,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "AtlantisCmd"
 #dynamic = [ "version" ]
-version = {attr = "atlantis_cmd.__version__"}
+version = "22.1.dev0"
 description = "Salish Sea CSIRO Atlantis ecosystem model command processor"
 readme = "README.rst"
 requires-python = ">=3.10"
