@@ -59,6 +59,14 @@ gather = "nemo_cmd.gather:Gather"
 run = "atlantis_cmd.run:Run"
 
 
+[tool.coverage.run]
+branch = true
+source = ["atlantis_cmd", "tests"]
+
+[tool.coverage.report]
+show_missing = true
+
+
 [tool.hatch.build.targets.wheel]
 packages = ["atlantis_cmd"]
 

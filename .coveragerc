@@ -1,8 +1,0 @@
-[run]
-branch = True
-source =
-    atlantis_cmd
-    tests
-
-[report]
-show_missing = True
