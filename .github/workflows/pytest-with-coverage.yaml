@@ -3,6 +3,9 @@ name: pytest-with-coverage
 on:
   push:
     branches: [ '*' ]
+  # Enable workflow to be triggered from GitHub CLI, browser, or via API
+  # primarily for testing conda env solution for new Python versions
+  workflow_dispatch:
 
 jobs:
   pytest-with-coverage:
@@ -13,10 +16,36 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [ '3.11' ]
-    uses: UBC-MOAD/gha-workflows/.github/workflows/pytest-with-coverage.yaml@main
-    with:
-      python-version: ${{ matrix.python-version }}
-      conda-env-file: envs/environment-test.yaml
-      conda-env-name: atlantis-cmd-test
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@ab6bf8bf7403e8023a094abeec19d6753bdc143e
+        with:
+           environment-file: envs/environment-test.yaml
+           environment-name: atlantis-cmd-test
+           # environment caching does not play nicely with --editable installed packages
+           cache-environment: false
+           cache-downloads: true
+           # persist downloads cache for 1 day
+           cache-downloads-key: downloads-${{ steps.date.outputs.date }}
+           create-args: >-
+             python=${{ inputs.python-version }}
+
+      - name: pytest package with coverage
+        shell: bash -l {0}
+        # we need to specify that the coverage config is in the pyproject.toml file
+        # because something in the repo (maybe cookiecutter?) causes the tests to run
+        # in parallel and coverage raises and error about combining branch and statement
+        # coverage data; providing the coverage config explicitly is a work-around
+        run: |
+          pytest --cov=$GITHUB_WORKSPACE --cov-config=pyproject.toml --cov-report=xml
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@5c47607acb93fed5485fdbf7232e8a31425f672a
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          token: ${{ secrets.CODECOV_TOKEN }}
