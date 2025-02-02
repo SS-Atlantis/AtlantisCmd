@@ -26,7 +26,7 @@ name = "AtlantisCmd"
 dynamic = [ "version" ]
 description = "Salish Sea CSIRO Atlantis ecosystem model command processor"
 readme = "README.rst"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license-files = { paths = ["LICENSE"] }
 authors = [
     {name = "Doug Latornell", email = "dlatornell@eoas.ubc.ca"},
