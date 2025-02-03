@@ -16,8 +16,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""AtlantisCmd run sub-command plug-in unit and integration tests.
-"""
+"""AtlantisCmd run sub-command plug-in unit and integration tests."""
 import logging
 import os
 import textwrap

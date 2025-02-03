@@ -16,8 +16,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""Shared fixtures for AtlantisCmd unit and integration tests.
-"""
+"""Shared fixtures for AtlantisCmd unit and integration tests."""
 import os
 import textwrap
 from pathlib import Path
