@@ -13,13 +13,17 @@
 import importlib.metadata
 import os
 import sys
+import tomllib
+from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(".."))
 
 
 # -- Project information -----------------------------------------------------
 
-project = "AtlantisCmd"
+with Path("../pyproject.toml").open("rb") as f:
+    pkg_info = tomllib.load(f)
+project = pkg_info["project"]["name"]
 
 author = "the Salish Sea Atlantis project contributors, The University of British Columbia, and CSIRO"
 
