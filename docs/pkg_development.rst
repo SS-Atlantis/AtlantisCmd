@@ -81,9 +81,9 @@ Python Versions
     :alt: Python Version
 
 The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.13.
-The minimum supported Python version is 3.11.
+The minimum supported Python version is 3.12.
 The :ref:`AtlantisCmdContinuousIntegration` workflow on GitHub ensures that the package
-is tested for all versions of Python>=3.11.
+is tested for all versions of Python>=3.12.
 
 .. _Python: https://www.python.org/
 
