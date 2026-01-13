@@ -115,7 +115,7 @@ tzdata==2025.2
 ukkonen==1.0.1
 urllib3==2.6.3
 userpath==1.9.2
-virtualenv==20.35.4
+virtualenv==20.36.1
 wcwidth==0.2.14
 zipp==3.23.0
 zstandard==0.25.0
