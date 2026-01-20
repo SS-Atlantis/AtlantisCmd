@@ -19,6 +19,7 @@
 """Functional tests for symlinks and file copies created by cookiecutter
 post_gen_project hook script.
 """
+
 from pathlib import Path
 
 import atlantis_cmd.run

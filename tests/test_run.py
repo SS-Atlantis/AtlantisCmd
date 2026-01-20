@@ -17,6 +17,7 @@
 
 
 """AtlantisCmd run sub-command plug-in unit and integration tests."""
+
 import logging
 import os
 import textwrap
@@ -432,8 +433,7 @@ class TestAtlantisBashScript:
             Path(run_desc["paths"]["runs directory"])
             / "SS-Atlantis_2021-08-04T105443-0700"
         )
-        expected = textwrap.dedent(
-            f"""\
+        expected = textwrap.dedent(f"""\
             #!/bin/bash
 
             set -e  # abort on first error
@@ -471,8 +471,7 @@ class TestAtlantisBashScript:
             rmdir -v $(pwd) &>>${{RESULTS_DIR}}/stdout
             echo "Finished at $(date)" >>${{RESULTS_DIR}}/stdout
             exit ${{ATLANTIS_EXIT_CODE}}
-            """
-        )
+            """)
         tmp_run_dir_lines = [
             line.strip()
             for line in (tmp_run_dir / "Atlantis.sh").read_text().splitlines()
@@ -503,8 +502,7 @@ class TestAtlantisBashScript:
             Path(run_desc["paths"]["runs directory"])
             / "SS-Atlantis_2021-08-04T105443-0700"
         )
-        expected = textwrap.dedent(
-            f"""\
+        expected = textwrap.dedent(f"""\
             #!/bin/bash
 
             set -e  # abort on first error
@@ -542,8 +540,7 @@ class TestAtlantisBashScript:
             rmdir -v $(pwd) &>>${{RESULTS_DIR}}/stdout
             echo "Finished at $(date)" >>${{RESULTS_DIR}}/stdout
             exit ${{ATLANTIS_EXIT_CODE}}
-            """
-        )
+            """)
         tmp_run_dir_lines = [
             line.strip()
             for line in (tmp_run_dir / "Atlantis.sh").read_text().splitlines()

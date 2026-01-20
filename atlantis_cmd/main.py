@@ -23,6 +23,7 @@ Atlantis Ecosystem Model Command Processor
 This module is connected to the :command:`atlantis` command via a scripts and
 entry-points configuration in :file:`pyproject.toml`.
 """
+
 import sys
 
 import cliff.app

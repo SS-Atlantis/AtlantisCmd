@@ -19,10 +19,10 @@
 """Post-rendering script to set up symlinks and copied files in temporary run directory
 for a run of the CSIRO Atlantis ecosystem model.
 """
+
 import json
 import shutil
 from pathlib import Path
-
 
 shutil.copy2(Path("{{ cookiecutter.run_desc_yaml }}"), Path.cwd())
 

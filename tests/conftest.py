@@ -17,6 +17,7 @@
 
 
 """Shared fixtures for AtlantisCmd unit and integration tests."""
+
 import os
 import textwrap
 from pathlib import Path
@@ -75,9 +76,7 @@ def fixture_run_desc(tmp_path):
     atlantis_cmd_repo = Path(__file__).parent.parent
 
     atlantis_yaml = tmp_path / "atlantis.yaml"
-    atlantis_yaml.write_text(
-        textwrap.dedent(
-            f"""\
+    atlantis_yaml.write_text(textwrap.dedent(f"""\
             run id: SS-Atlantis
 
             paths:
@@ -116,9 +115,7 @@ def fixture_run_desc(tmp_path):
             vcs revisions:
               git:
                 - {atlantis_cmd_repo}
-            """
-        )
-    )
+            """))
     with atlantis_yaml.open("rt") as f:
         run_desc = yaml.safe_load(f)
     return run_desc
