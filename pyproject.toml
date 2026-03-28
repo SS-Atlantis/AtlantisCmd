@@ -33,16 +33,14 @@ authors = [
 ]
 keywords = ["automation", "oceanography", "ocean modelling", "UBC-MOAD"]
 dependencies = [
-    # see envs/environment-dev.yaml for conda environment dev installation,
-    # see envs/requirements.txt for package versions used during recent development
     "arrow",
+    "attrs",
     "cliff",
     "cookiecutter",
     "f90nml",
     "gitpython",
     "python-hglib",
     "pyyaml",
-    # "NEMO-Cmd"  # use python -m pip install --editable NEMO-Cmd/
 ]
 
 [project.urls]
@@ -80,5 +78,17 @@ platforms = ["linux-64", "osx-64", "win-64"]
 
 [tool.pixi.pypi-dependencies]
 AtlantisCmd = { path = ".", editable = true }
+nemo-cmd = { git = "https://github.com/SalishSeaCast/NEMO-Cmd.git" }
+python-hglib = ">=2.6.2,<3"
 
 [tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+arrow = ">=1.4.0,<2"
+attrs = ">=26.1.0,<27"
+cliff = ">=4.13.2,<5"
+cookiecutter = ">=2.7.1,<3"
+f90nml = ">=1.5,<2"
+gitpython = ">=3.1.46,<4"
+python = "3.14.*"
+pyyaml = ">=6.0.3,<7"
