@@ -376,13 +376,12 @@ The `pytest`_ tool is used for test parametrization and as the test runner for t
 
 .. _pytest: https://docs.pytest.org/en/latest/
 
-With your :kbd:`atlantis-cmd` development environment activated,
-use:
+Use:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/
-    (atlantis-cmd)$ pytest
+    cd AtlantisCmd/
+    pixi run pytest
 
 to run the test suite.
 The output looks something like:
@@ -390,11 +389,11 @@ The output looks something like:
 .. code-block:: text
 
     ================================ test session starts =================================
-    platform linux -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
-    Using --randomly-seed=1250465370
+    platform linux -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0
+    Using --randomly-seed=2919284692
     rootdir: /media/doug/warehouse/Atlantis/AtlantisCmd
     configfile: pyproject.toml
-    plugins: cov-7.0.0, randomly-3.15.0, anyio-4.11.0
+    plugins: randomly-3.15.0, cov-7.1.0
     collected 49 items
 
     tests/test_run.py .........................................                         [ 83%]
@@ -409,21 +408,17 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/
-    (atlantis-cmd)$ pytest --cov=./
+    cd AtlantisCmd/
+    pixi run pytest-cov
 
-and generate a test coverage report with:
+The test coverage report will be displayed below the test suite run output.
 
-.. code-block:: bash
-
-    (atlantis-cmd)$ coverage report
-
-to produce a plain text report,
-or
+Alternatively,
+you can use
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ coverage html
+    pixi run pytest-cov-html
 
 to produce an HTML report that you can view in your browser by opening :file:`AtlantisCmd/htmlcov/index.html`.
 

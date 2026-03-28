@@ -63,7 +63,7 @@ source = ["atlantis_cmd", "tests"]
 
 [tool.coverage.report]
 show_missing = true
-
+omit = [ ".pixi/*" ]
 
 [tool.hatch.build.targets.wheel]
 packages = ["atlantis_cmd"]
@@ -93,3 +93,16 @@ gitpython = ">=3.1.46,<4"
 pixi-pycharm = ">=0.0.10,<0.0.11"
 python = "3.14.*"
 pyyaml = ">=6.0.3,<7"
+
+[tool.pixi.environments]
+test = { features = ["test"], solve-group = "default" }
+
+[tool.pixi.feature.test.dependencies]
+pytest = ">=9.0.2,<10"
+pytest-cov = ">=7.1.0,<8"
+pytest-randomly = ">=3.15.0,<4"
+
+[tool.pixi.feature.test.tasks]
+pytest = "pytest"
+pytest-cov = "pytest --cov=./"
+pytest-cov-html = "pytest --cov=./ --cov-report html"
