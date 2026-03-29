@@ -96,6 +96,7 @@ pyyaml = ">=6.0.3,<7"
 
 [tool.pixi.environments]
 test = { features = ["test"], solve-group = "default" }
+test-py314 = ["py314", "test"]
 
 [tool.pixi.feature.test.dependencies]
 pytest = ">=9.0.2,<10"
@@ -106,3 +107,6 @@ pytest-randomly = ">=3.15.0,<4"
 pytest = "pytest"
 pytest-cov = "pytest --cov=./"
 pytest-cov-html = "pytest --cov=./ --cov-report html"
+
+[tool.pixi.feature.py314.dependencies]
+python = "3.14.*"
