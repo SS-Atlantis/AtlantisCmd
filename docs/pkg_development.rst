@@ -205,21 +205,21 @@ Building the Documentation
 The documentation for the :kbd:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Creating a :ref:`AtlantisCmdDevelopmentEnvironment` as described above includes the installation of Sphinx.
 Building the documentation is driven by the :file:`docs/Makefile`.
-With your :kbd:`atlantis-cmd` development environment activated,
-use:
+To do a clean build of the documentation use:
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ (cd docs && make clean html)
+    cd AtlantisCmd
+    pixi run docs
 
-to do a clean build of the documentation.
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (docs in docs): make clean html
     Removing everything under '_build'...
     Running Sphinx v8.1.3
     loading translations [en]... done
@@ -238,8 +238,8 @@ The output looks something like:
     copying assets...
     copying static files...
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/language_data.js
-    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/documentation_options.js
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/js/versions.js
     copying static files: done
     copying extra files...
@@ -272,18 +272,18 @@ Link Checking the Documentation
 
 
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
-With your :kbd:`atlantis-cmd)` environment activated,
-use:
+Run the link checker with:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/docs/
-    (atlantis-cmd) docs$ make clean linkcheck
+    cd AtlantisCmd
+    pixi run linkcheck
 
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (linkcheck in docs): make clean linkcheck
     Removing everything under '_build'...
     Running Sphinx v8.1.3
     loading translations [en]... done
@@ -304,59 +304,59 @@ The output looks something like:
     writing output... [100%] subcommands
 
     ( pkg_development: line   23) ok        https://black.readthedocs.io/en/stable/
-    ( pkg_development: line   23) ok        https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     ( pkg_development: line   23) ok        https://atlantiscmd.readthedocs.io/en/latest/
+    ( pkg_development: line   23) ok        https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     ( pkg_development: line   36) ok        https://app.readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    ( pkg_development: line   29) ok        https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     (     subcommands: line  119) ok        https://cookiecutter.readthedocs.io/en/latest/
-    ( pkg_development: line  404) ok        https://coverage.readthedocs.io/en/latest/
-    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/
+    ( pkg_development: line   29) ok        https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/miniconda.html
-    (installation/atlantis_cmd: line   60) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
-    ( pkg_development: line  453) ok        https://docs.github.com/en/actions
-    ( pkg_development: line  373) ok        https://docs.pytest.org/en/latest/
-    ( pkg_development: line   23) ok        https://docs.python.org/3/
-    ( pkg_development: line   77) ok        https://docs.python.org/3
-    ( pkg_development: line  467) ok        https://git-scm.com/
+    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/
+    ( pkg_development: line  404) ok        https://coverage.readthedocs.io/en/latest/
+    ( pkg_development: line  374) ok        https://docs.pytest.org/en/latest/
     (           index: line   30) ok        https://docs.openstack.org/cliff/latest/
-    (run_description_file/index: line   30) redirect  https://bitbucket.csiro.au/users/por07g/repos/salish-sea-atlantis-model/browse - with Found to https://bitbucket.csiro.au/login
-    ( pkg_development: line   26) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg
+    ( pkg_development: line   77) ok        https://docs.python.org/3
+    ( pkg_development: line   23) ok        https://docs.python.org/3/
+    ( pkg_development: line  463) ok        https://git-scm.com/
+    (installation/atlantis_cmd: line   60) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
     ( pkg_development: line   32) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
-    ( pkg_development: line   39) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    (run_description_file/index: line   30) redirect  https://bitbucket.csiro.au/users/por07g/repos/salish-sea-atlantis-model/browse - with Found to https://bitbucket.csiro.au/login
     (           index: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd
-    ( pkg_development: line  442) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions
+    ( pkg_development: line   26) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg
+    ( pkg_development: line  438) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions
+    ( pkg_development: line   39) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    ( pkg_development: line  429) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:CodeQL
-    ( pkg_development: line  433) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
+    ( pkg_development: line  449) ok        https://docs.github.com/en/actions
     ( pkg_development: line  267) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:pytest-with-coverage
-    ( pkg_development: line  435) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
+    ( pkg_development: line  431) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
     ( pkg_development: line  269) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
-    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
+    ( pkg_development: line  438) ok        https://github.com/SS-Atlantis/AtlantisCmd/commits/main
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/releases
-    ( pkg_development: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
     ( pkg_development: line   63) ok        https://img.shields.io/badge/code%20style-black-000000.svg
+    ( pkg_development: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
     (           index: line   58) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
     ( pkg_development: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     ( pkg_development: line   56) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:sphinx-linkcheck
-    ( pkg_development: line   49) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
-    ( pkg_development: line   46) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
     ( pkg_development: line   43) ok        https://img.shields.io/github/v/release/SS-Atlantis/AtlantisCmd?logo=github
+    (           index: line   30) ok        https://github.com/SalishSeaCast/NEMO-Cmd
+    ( pkg_development: line   49) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
+    ( pkg_development: line   23) ok        https://github.com/pypa/hatch
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:sphinx-linkcheck
     (installation/atlantis_cmd: line   46) ok        https://nemo-cmd.readthedocs.io/en/latest/
     (     subcommands: line  181) ok        https://nemo-cmd.readthedocs.io/en/latest/subcommands.html#nemo-gather
-    (           index: line   30) ok        https://github.com/SalishSeaCast/NEMO-Cmd
-    ( pkg_development: line   23) ok        https://github.com/pypa/hatch
+    ( pkg_development: line   46) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
     ( pkg_development: line  404) ok        https://pytest-cov.readthedocs.io/en/latest/
-    ( pkg_development: line  442) ok        https://github.com/SS-Atlantis/AtlantisCmd/commits/main
     ( pkg_development: line   23) ok        https://pre-commit.com
     (run_description_file/index: line   25) ok        https://pyyaml.org/wiki/PyYAMLDocumentation
-    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
-    (           index: line   56) ok        https://www.apache.org/licenses/LICENSE-2.0
-    ( pkg_development: line   83) ok        https://www.python.org/
     ( pkg_development: line  172) ok        https://pre-commit.com/
+    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
     (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#secureremoteaccess
-    ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+    ( pkg_development: line   83) ok        https://www.python.org/
     ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/
+    ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+    (           index: line   56) ok        https://www.apache.org/licenses/LICENSE-2.0
     build succeeded.
 
     Look for any errors in the above output or in _build/linkcheck/output.txt
