@@ -1656,7 +1656,7 @@ packages:
 - pypi: ./
   name: atlantiscmd
   version: 25.3.dev0
-  sha256: a772aa364c14d2ddc69c16ab4303f3d75ffc523d285051e228032f9b8de8b69f
+  sha256: 64a3b70aeb2d057c5d3673954f2c45acb6b43255688dddf2ac2b56fa8dbc1feb
   requires_dist:
   - arrow
   - attrs
