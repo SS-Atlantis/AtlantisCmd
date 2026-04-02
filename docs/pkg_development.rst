@@ -18,9 +18,9 @@
 
 .. _AtlantisCmdPackagedDevelopment:
 
-**************************************
-:kbd:`AtlantisCmd` Package Development
-**************************************
+*****************************************
+:py:obj:`AtlantisCmd` Package Development
+*****************************************
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Continuous Integration** | .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg                                                                                          |
@@ -68,7 +68,8 @@
 |                            |     :alt: Hatch project                                                                                                                                                                              |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model. AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
+The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model.
+AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
 
 
 .. _AtlantisCmdPythonVersions:
@@ -81,9 +82,8 @@ Python Versions
     :alt: Python Version
 
 The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.14.
-The minimum supported Python version is 3.12.
 The :ref:`AtlantisCmdContinuousIntegration` workflow on GitHub ensures that the package
-is tested for all versions of Python>=3.12.
+is tested whenever changes in the repository are pushed or merged.
 
 .. _Python: https://www.python.org/
 
@@ -123,39 +123,45 @@ from the :guilabel:`Code` button on the `repository`_ page.
 Development Environment
 =======================
 
-The :kbd:`AtlantisCmd` package depends on the `NEMO-Cmd package`_,
-so you need to clone its repo,
-`NEMO-Cmd`_,
-beside your clone of AtlantisCmd `repository`_.
+:py:obj:`AtlantisCmd` uses Pixi_ for package and environment management.
+If you don't already have Pixi_ installed,
+please follow its `installation instructions`_ to do so.
 
-.. _NEMO-Cmd package: https://nemo-cmd.readthedocs.io/en/latest/
-.. _NEMO-Cmd: https://github.com/SalishSeaCast/NEMO-Cmd
+.. _Pixi: https://pixi.prefix.dev/latest/
+.. _`installation instructions`: https://pixi.prefix.dev/latest/installation/
 
-Setting up an isolated development environment using `Conda`_ is recommended.
-Assuming that you have `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`atlantis-cmd` that will have all of the Python packages necessary for development,
-testing,
-and building the documentation with the commands below.
+Most commands are executed using :command:`pixi run` in the :file:`AtlantisCmd/` directory
+(or a sub-directory).
+Dependencies will be downloaded and linked in to environments when you use :command:`pixi run`
+for the first time.
 
-.. _Conda: https://docs.conda.io/en/latest/
-.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
+* The ``default`` environment has the packages installed that are required to run the
+  :py:obj:`AtlantisCmd` command-line interface;
+  e.g. :command:`pixi run atlantis help`
 
-.. code-block:: bash
+* Other environments used by commands in the sections below have addition packages for running
+  the test suite,
+  building and link checking the documentation,
+  etc.
 
-    $ cd AtlantisCmd
-    $ conda env create -f env/environment-dev.yaml
-    $ conda activate atlantis-cmd
-    (atlantis-cmd)$ pip install --editable ../NEMO-Cmd
-    (atlantis-cmd)$ pip install --editable .
+* If you are using an integrated development environment like VSCode or PyCharm
+  where you need a Python interpreter to support coding assistance features,
+  run development tasks,
+  etc.,
+  use the interpreter in the ``dev`` environment.
+  You can get its full path with :command:`pixi run -e dev which python`
 
-The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolves.
+To get detailed information about the environments,
+the packages installed in them,
+`Pixi`_ tasks that are defined for them,
+etc.,
+:use command:`pixi info`.
 
-To deactivate the environment use:
+:py:obj:`AtlantisCmd` is installed in `editable install mode`_ in all of the environments that
+`Pixi`_ creates.
+That means that changes you make to the code are immediately reflected in the environments.
 
-.. code-block:: bash
-
-    (atlantis-cmd)$ conda deactivate
-
+.. _editable install mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
 
 .. _AtlantisCmdCodingStyle:
 
@@ -169,7 +175,7 @@ Coding Style
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 
-The :kbd:`AtlantisCmd` package uses the Git pre-commit hooks managed by `pre-commit`_
+The :py:obj:`AtlantisCmd` package uses the Git pre-commit hooks managed by `pre-commit`_
 to maintain consistent code style and and other aspects of code,
 docs,
 and repo QA.
@@ -177,18 +183,16 @@ and repo QA.
 .. _pre-commit: https://pre-commit.com/
 
 To install the ``pre-commit`` hooks in a newly cloned repo,
-activate the conda development environment,
-and run :command:`pre-commit install`:
+run :command:`pre-commit install`:
 
 .. code-block:: bash
 
     $ cd AtlantisCmd
-    $ conda activate atlantis_cmd
-    (atlantis-cmd)$ pre-commit install
+    $ pixi run -e dev pre-commit install
 
 .. note::
     You only need to install the hooks once immediately after you make a new clone of the
-    `AtlantisCmd repository`_ and build your :ref:`AtlantisCmdDevelopmentEnvironment`.
+    `AtlantisCmd repository`_.
 
 .. _AtlantisCmd repository: https://github.com/SS-Atlantis/AtlantisCmd
 
@@ -202,8 +206,7 @@ Building the Documentation
     :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
 
-The documentation for the :kbd:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
-Creating a :ref:`AtlantisCmdDevelopmentEnvironment` as described above includes the installation of Sphinx.
+The documentation for the :py:obj:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Building the documentation is driven by the :file:`docs/Makefile`.
 To do a clean build of the documentation use:
 
@@ -212,8 +215,8 @@ To do a clean build of the documentation use:
 
 .. code-block:: bash
 
-    cd AtlantisCmd
-    pixi run docs
+    $ cd AtlantisCmd
+    $ pixi run docs
 
 The output looks something like:
 
@@ -276,8 +279,8 @@ Run the link checker with:
 
 .. code-block:: bash
 
-    cd AtlantisCmd
-    pixi run linkcheck
+    $ cd AtlantisCmd
+    $ pixi run linkcheck
 
 The output looks something like:
 
@@ -371,7 +374,7 @@ The output looks something like:
 Running the Unit Tests
 ======================
 
-The test suite for the :kbd:`AtlantisCmd` package is in :file:`AtlantisCmd/tests/`.
+The test suite for the :py:obj:`AtlantisCmd` package is in :file:`AtlantisCmd/tests/`.
 The `pytest`_ tool is used for test parametrization and as the test runner for the suite.
 
 .. _pytest: https://docs.pytest.org/en/latest/
@@ -380,8 +383,8 @@ Use:
 
 .. code-block:: bash
 
-    cd AtlantisCmd/
-    pixi run pytest
+    $ cd AtlantisCmd/
+    $ pixi run pytest
 
 to run the test suite.
 The output looks something like:
@@ -408,8 +411,8 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 
 .. code-block:: bash
 
-    cd AtlantisCmd/
-    pixi run pytest-cov
+    $ cd AtlantisCmd/
+    $ pixi run pytest-cov
 
 The test coverage report will be displayed below the test suite run output.
 
@@ -418,7 +421,7 @@ you can use
 
 .. code-block:: bash
 
-    pixi run pytest-cov-html
+    $ pixi run pytest-cov-html
 
 to produce an HTML report that you can view in your browser by opening :file:`AtlantisCmd/htmlcov/index.html`.
 
@@ -435,7 +438,7 @@ Continuous Integration
     :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     :alt: Codecov Testing Coverage Report
 
-The :kbd:`AtlantisCmd` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
+The :py:obj:`AtlantisCmd` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
 The results are visible on the `repo actions page`_,
 from the green checkmarks beside commits on the `repo commits page`_,
 or from the green checkmark to the left of the "Latest commit" message on the `repo code overview page`_ .
@@ -460,7 +463,7 @@ Version Control Repository
     :target: https://github.com/SS-Atlantis/AtlantisCmd
     :alt: Git on GitHub
 
-The :kbd:`AtlantisCmd` package code and documentation source files are available as a `Git`_ repository at https://github.com/SS-Atlantis/AtlantisCmd.
+The :py:obj:`AtlantisCmd` package code and documentation source files are available as a `Git`_ repository at https://github.com/SS-Atlantis/AtlantisCmd.
 
 .. _Git: https://git-scm.com/
 
