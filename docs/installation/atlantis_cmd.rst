@@ -18,20 +18,29 @@
 
 .. _AtlantisCmdInstallation:
 
-***************************************
-:kbd:`AtlantisCmd` Package Installation
-***************************************
+******************************************
+:py:obj:`AtlantisCmd` Package Installation
+******************************************
 
-:kbd:`AtlantisCmd` is a Python package that provides the :program:`atlantis` command-line tool for managing runs of the CSIRO Atlantis ecosystem model.
+:py:obj:`AtlantisCmd` is a Python package that provides the :program:`atlantis` command-line tool
+for managing runs of the CSIRO Atlantis ecosystem model.
+It is an extension of the `SalishSeaCast/NEMO-Cmd`_ package customized for working with
+the Atlantis ecosystem model.
 
-Installation of :kbd:`AtlantisCmd` is a 3 step process:
+.. _SalishSeaCast/NEMO-Cmd: https://github.com/SalishSeaCast/NEMO-Cmd
 
-#. Clone the `SS-Atlantis/AtlantisCmd`_ and `SalishSeaCast/NEMO-Cmd`_ repositories from GitHub
-#. Create the :kbd:`atlantis-cmd` conda environment
-#. Install the :kbd:`NEMO-Cmd` and :kbd:`AtlantisCmd` packages in the :kbd:`atlantis-cmd` environment
+These instructions assume that you have installed the Pixi_ package and environments manager
+(`installation instructions`_).
+
+  .. _Pixi: https://pixi.prefix.dev/latest/
+  .. _`installation instructions`: https://pixi.prefix.dev/latest/installation/
+
+Installation of :py:obj:`AtlantisCmd` is a 2 step process:
+
+#. Clone the `SS-Atlantis/AtlantisCmd`_ repository from GitHub
+#. Use Pixi to install Python and the packages needed to run :py:obj:`AtlantisCmd`
 
 .. _SS-Atlantis/AtlantisCmd: https://github.com/SS-Atlantis/AtlantisCmd
-.. _SalishSeaCast/NEMO-Cmd: https://github.com/SalishSeaCast/NEMO-Cmd
 
 The following sections assume that the base directory for your Atlantis work is :file:`/ocean/$USER/Atlantis/`.
 
@@ -39,94 +48,60 @@ Once you have completed the installation,
 please see :ref:`AtlantisCmdSubcommands` for information about how to use the :program:`atlantis` command,
 and :ref:`RunDescriptionFileStructure` for information about how to construct the run description YAML files that it uses.
 
+For doing development,
+testing,
+and documentation of the :py:obj:`AtlantisCmd` package,
+please see the :ref:`AtlantisCmdPackagedDevelopment` section.
 
-Clone Repositories
-==================
 
-The :kbd:`AtlantisCmd` package relies on the `NEMO-Cmd`_ package for some of its functionality.
+Clone Repository
+================
 
-.. _NEMO-Cmd: https://nemo-cmd.readthedocs.io/en/latest/
-
-Clone the repositories from GitHub with:
+Clone the repository from GitHub with:
 
 .. code-block:: bash
 
     $ cd /ocean/$USER/Atlantis/
-    $ git clone git@github.com:SalishSeaCast/NEMO-Cmd.git
     $ git clone git@github.com:SS-Atlantis/AtlantisCmd.git
 
 .. note::
 
     The :kbd:`git clone` command above assumes that you are `connecting to GitHub using SSH`_.
     If it fails,
-    please follow the instructions in our :ref:`moaddocs:SecureRemoteAccess` docs to set up your SSH keys and :ref:`moaddocs:CopyYourPublicSshKeyToGitHub`.
+    please follow the instructions in our :ref:`moaddocs:SecureRemoteAccess` docs to set up
+    your SSH keys and :ref:`moaddocs:CopyYourPublicSshKeyToGitHub`.
 
     .. _connecting to GitHub using SSH: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 
-Create Conda Environment
-========================
+Install Python and Dependency Packages
+======================================
 
-Create an isolated `Conda`_ environment for :kbd:`AtlantisCmd` to avoid conflicts with other Python packages installed on your system.
-Assuming that you have `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`atlantis-cmd` that will have all of the Python packages necessary to use the :program:`atlantis` command that is provided by the :kbd:`AtlantisCmd` package.
-The environment will also include additional packages that are used for development,
-testing,
-and building the package documentation.
-
-.. _Conda: https://docs.conda.io/en/latest/
-.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
+Use Pixi to create an isolated environment for :py:obj:`AtlantisCmd` to avoid conflicts with other Python packages installed on your system.
+That environment will have all of the Python packages necessary to use the :program:`atlantis` command that is provided by the :py:obj:`AtlantisCmd` package.
 
 .. code-block:: bash
 
     $ cd AtlantisCmd
-    $ conda env create -f envs/environment-dev.yaml
+    $ pixi install
 
-Whenever you want to use the :program:`atlantis` command you will need to activate the :kbd:`atlantis-cmd` environment with the command:
-
-.. code-block:: bash
-
-    $ conda activate atlantis-cmd
-
-You can tell that the environment is activated because your command-line prompt changes to includes the environment name in parenthesis like:
+When you are in the :file:`AtlantisCmd/` directory
+(or a sub-directory)
+you can run the :program:`atlantis` command with with the :command:`pixi run` command.
+Example:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$
+    $ pixi run atlantis help
 
-To deactivate the environment use:
-
-.. code-block:: bash
-
-    (atlantis-cmd)$ conda deactivate
-
-
-Install Packages
-================
-
-Activate your :kbd:`atlantis-cmd` environment and install the :kbd:`NEMO-Cmd` and :kbd:`AtlantisCmd` packages in it.
-You only need to do this once when you are setting things up.
-After that,
-activating the :kbd:`atlantis-cmd` environment makes the :program:`atlantis` command available for use.
+A common use-case is to execute the :command:`atlantis run` command in the directory containing your run description YAML file.
+To accomplish that,
+we have to tell Pixi where to find the :file:`AtlantisCmd/` directory so that it can use the correct environment.
+We do that by using the ``-m`` or ``--manifest`` option of :command:`pixi run`.
+Example:
 
 .. code-block:: bash
 
-
-    $ cd AtlantisCmd
-    $ conda activate atlantis-cmd
-    (atlantis-cmd)$ pip install --editable ../NEMO-Cmd
-    (atlantis-cmd)$ pip install --editable .
-
-The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolve.
-
-You can confirm that the :kbd:`AtlantisCmd` package is installed and learn which version it is using with the command:
-
-.. code-block:: bash
-
-    (atlantis-cmd)$ atlantis --version
-
-The output of that command should be something like:
-
-.. code-block:: text
-
-    atlantis 21.1.dev0
+    $ cd /ocean/$USER/Atlantis/SSAM_Runs/
+    $ pixi run -m /ocean/$USER/Atlantis/AtlantisCmd salishsea run atlantis_highres_d0.yaml \
+        /ocean/$USER/Atlantis/highres-d0_5b_2019-01-20_depth_PC/
