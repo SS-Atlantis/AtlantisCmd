@@ -18,9 +18,9 @@
 
 .. _AtlantisCmdPackagedDevelopment:
 
-**************************************
-:kbd:`AtlantisCmd` Package Development
-**************************************
+*****************************************
+:py:obj:`AtlantisCmd` Package Development
+*****************************************
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Continuous Integration** | .. image:: https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg                                                                                          |
@@ -56,6 +56,9 @@
 |                            | .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github                                                                                                                   |
 |                            |     :target: https://github.com/SS-Atlantis/AtlantisCmd                                                                                                                                              |
 |                            |     :alt: Git on GitHub                                                                                                                                                                              |
+|                            | .. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json                                                                           |
+|                            |     :target: https://pixi.prefix.dev/latest/                                                                                                                                                         |
+|                            |     :alt: Pixi                                                                                                                                                                                       |
 |                            +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                            | .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white                                                                                              |
 |                            |     :target: https://pre-commit.com                                                                                                                                                                  |
@@ -68,7 +71,8 @@
 |                            |     :alt: Hatch project                                                                                                                                                                              |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model. AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
+The AtlantisCmd package (:kbd:`atlantis_cmd`) is a command-line tool for doing various operations associated with the Salish Sea Atlantis project version of the CSIRO Atlantis ecosystem model.
+AtlantisCmd is based on, and provides Atlantis-specific extensions for https://github.com/SalishSeaCast/NEMO-Cmd.
 
 
 .. _AtlantisCmdPythonVersions:
@@ -81,9 +85,8 @@ Python Versions
     :alt: Python Version
 
 The :kbd:`atlantis_cmd` package is developed and tested using `Python`_ 3.14.
-The minimum supported Python version is 3.12.
 The :ref:`AtlantisCmdContinuousIntegration` workflow on GitHub ensures that the package
-is tested for all versions of Python>=3.12.
+is tested whenever changes in the repository are pushed or merged.
 
 .. _Python: https://www.python.org/
 
@@ -123,39 +126,49 @@ from the :guilabel:`Code` button on the `repository`_ page.
 Development Environment
 =======================
 
-The :kbd:`AtlantisCmd` package depends on the `NEMO-Cmd package`_,
-so you need to clone its repo,
-`NEMO-Cmd`_,
-beside your clone of AtlantisCmd `repository`_.
+.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json
+    :target: https://pixi.prefix.dev/latest/
+    :alt: Pixi
 
-.. _NEMO-Cmd package: https://nemo-cmd.readthedocs.io/en/latest/
-.. _NEMO-Cmd: https://github.com/SalishSeaCast/NEMO-Cmd
+:py:obj:`AtlantisCmd` uses Pixi_ for package and environment management.
+If you don't already have Pixi_ installed,
+please follow its `installation instructions`_ to do so.
 
-Setting up an isolated development environment using `Conda`_ is recommended.
-Assuming that you have `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`atlantis-cmd` that will have all of the Python packages necessary for development,
-testing,
-and building the documentation with the commands below.
+.. _Pixi: https://pixi.prefix.dev/latest/
+.. _`installation instructions`: https://pixi.prefix.dev/latest/installation/
 
-.. _Conda: https://docs.conda.io/en/latest/
-.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
+Most commands are executed using :command:`pixi run` in the :file:`AtlantisCmd/` directory
+(or a sub-directory).
+Dependencies will be downloaded and linked in to environments when you use :command:`pixi run`
+for the first time.
 
-.. code-block:: bash
+* The ``default`` environment has the packages installed that are required to run the
+  :py:obj:`AtlantisCmd` command-line interface;
+  e.g. :command:`pixi run atlantis help`
 
-    $ cd AtlantisCmd
-    $ conda env create -f env/environment-dev.yaml
-    $ conda activate atlantis-cmd
-    (atlantis-cmd)$ pip install --editable ../NEMO-Cmd
-    (atlantis-cmd)$ pip install --editable .
+* Other environments used by commands in the sections below have addition packages for running
+  the test suite,
+  building and link checking the documentation,
+  etc.
 
-The :kbd:`--editable` option in the :command:`pip install` commands above install the packages from the cloned repos via symlinks so that the installed packages will be automatically updated as their repos evolves.
+* If you are using an integrated development environment like VSCode or PyCharm
+  where you need a Python interpreter to support coding assistance features,
+  run development tasks,
+  etc.,
+  use the interpreter in the ``dev`` environment.
+  You can get its full path with :command:`pixi run -e dev which python`
 
-To deactivate the environment use:
+To get detailed information about the environments,
+the packages installed in them,
+`Pixi`_ tasks that are defined for them,
+etc.,
+:use command:`pixi info`.
 
-.. code-block:: bash
+:py:obj:`AtlantisCmd` is installed in `editable install mode`_ in all of the environments that
+`Pixi`_ creates.
+That means that changes you make to the code are immediately reflected in the environments.
 
-    (atlantis-cmd)$ conda deactivate
-
+.. _editable install mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
 
 .. _AtlantisCmdCodingStyle:
 
@@ -169,7 +182,7 @@ Coding Style
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 
-The :kbd:`AtlantisCmd` package uses the Git pre-commit hooks managed by `pre-commit`_
+The :py:obj:`AtlantisCmd` package uses the Git pre-commit hooks managed by `pre-commit`_
 to maintain consistent code style and and other aspects of code,
 docs,
 and repo QA.
@@ -177,18 +190,16 @@ and repo QA.
 .. _pre-commit: https://pre-commit.com/
 
 To install the ``pre-commit`` hooks in a newly cloned repo,
-activate the conda development environment,
-and run :command:`pre-commit install`:
+run :command:`pre-commit install`:
 
 .. code-block:: bash
 
     $ cd AtlantisCmd
-    $ conda activate atlantis_cmd
-    (atlantis-cmd)$ pre-commit install
+    $ pixi run -e dev pre-commit install
 
 .. note::
     You only need to install the hooks once immediately after you make a new clone of the
-    `AtlantisCmd repository`_ and build your :ref:`AtlantisCmdDevelopmentEnvironment`.
+    `AtlantisCmd repository`_.
 
 .. _AtlantisCmd repository: https://github.com/SS-Atlantis/AtlantisCmd
 
@@ -202,24 +213,23 @@ Building the Documentation
     :target: https://atlantiscmd.readthedocs.io/en/latest/
     :alt: Documentation Status
 
-The documentation for the :kbd:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
-Creating a :ref:`AtlantisCmdDevelopmentEnvironment` as described above includes the installation of Sphinx.
+The documentation for the :py:obj:`AtlantisCmd` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Building the documentation is driven by the :file:`docs/Makefile`.
-With your :kbd:`atlantis-cmd` development environment activated,
-use:
+To do a clean build of the documentation use:
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ (cd docs && make clean html)
+    $ cd AtlantisCmd
+    $ pixi run docs
 
-to do a clean build of the documentation.
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (docs in docs): make clean html
     Removing everything under '_build'...
     Running Sphinx v8.1.3
     loading translations [en]... done
@@ -238,8 +248,8 @@ The output looks something like:
     copying assets...
     copying static files...
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/language_data.js
-    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/documentation_options.js
+    Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/Atlantis/AtlantisCmd/docs/_build/html/_static/js/versions.js
     copying static files: done
     copying extra files...
@@ -272,18 +282,18 @@ Link Checking the Documentation
 
 
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
-With your :kbd:`atlantis-cmd)` environment activated,
-use:
+Run the link checker with:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/docs/
-    (atlantis-cmd) docs$ make clean linkcheck
+    $ cd AtlantisCmd
+    $ pixi run linkcheck
 
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (linkcheck in docs): make clean linkcheck
     Removing everything under '_build'...
     Running Sphinx v8.1.3
     loading translations [en]... done
@@ -304,59 +314,59 @@ The output looks something like:
     writing output... [100%] subcommands
 
     ( pkg_development: line   23) ok        https://black.readthedocs.io/en/stable/
-    ( pkg_development: line   23) ok        https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     ( pkg_development: line   23) ok        https://atlantiscmd.readthedocs.io/en/latest/
+    ( pkg_development: line   23) ok        https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     ( pkg_development: line   36) ok        https://app.readthedocs.org/projects/atlantiscmd/badge/?version=latest
-    ( pkg_development: line   29) ok        https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     (     subcommands: line  119) ok        https://cookiecutter.readthedocs.io/en/latest/
-    ( pkg_development: line  404) ok        https://coverage.readthedocs.io/en/latest/
-    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/
+    ( pkg_development: line   29) ok        https://codecov.io/gh/SS-Atlantis/AtlantisCmd/branch/main/graph/badge.svg
     (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/miniconda.html
-    (installation/atlantis_cmd: line   60) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
-    ( pkg_development: line  453) ok        https://docs.github.com/en/actions
-    ( pkg_development: line  373) ok        https://docs.pytest.org/en/latest/
-    ( pkg_development: line   23) ok        https://docs.python.org/3/
-    ( pkg_development: line   77) ok        https://docs.python.org/3
-    ( pkg_development: line  467) ok        https://git-scm.com/
+    (installation/atlantis_cmd: line   70) ok        https://docs.conda.io/en/latest/
+    ( pkg_development: line  404) ok        https://coverage.readthedocs.io/en/latest/
+    ( pkg_development: line  374) ok        https://docs.pytest.org/en/latest/
     (           index: line   30) ok        https://docs.openstack.org/cliff/latest/
-    (run_description_file/index: line   30) redirect  https://bitbucket.csiro.au/users/por07g/repos/salish-sea-atlantis-model/browse - with Found to https://bitbucket.csiro.au/login
-    ( pkg_development: line   26) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg
+    ( pkg_development: line   77) ok        https://docs.python.org/3
+    ( pkg_development: line   23) ok        https://docs.python.org/3/
+    ( pkg_development: line  463) ok        https://git-scm.com/
+    (installation/atlantis_cmd: line   60) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
     ( pkg_development: line   32) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/codeql-analysis.yaml/badge.svg
-    ( pkg_development: line   39) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    (run_description_file/index: line   30) redirect  https://bitbucket.csiro.au/users/por07g/repos/salish-sea-atlantis-model/browse - with Found to https://bitbucket.csiro.au/login
     (           index: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd
-    ( pkg_development: line  442) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions
+    ( pkg_development: line   26) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/pytest-with-coverage.yaml/badge.svg
+    ( pkg_development: line  438) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions
+    ( pkg_development: line   39) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    ( pkg_development: line  429) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:CodeQL
-    ( pkg_development: line  433) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Apytest-with-coverage
+    ( pkg_development: line  449) ok        https://docs.github.com/en/actions
     ( pkg_development: line  267) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow%3Asphinx-linkcheck
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:pytest-with-coverage
-    ( pkg_development: line  435) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
+    ( pkg_development: line  431) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/pytest-with-coverage/badge.svg
     ( pkg_development: line  269) ok        https://github.com/SS-Atlantis/AtlantisCmd/workflows/sphinx-linkcheck/badge.svg
-    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
+    ( pkg_development: line  438) ok        https://github.com/SS-Atlantis/AtlantisCmd/commits/main
     ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/releases
-    ( pkg_development: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/issues
     ( pkg_development: line   63) ok        https://img.shields.io/badge/code%20style-black-000000.svg
+    ( pkg_development: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
     (           index: line   58) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
     ( pkg_development: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     ( pkg_development: line   56) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:sphinx-linkcheck
-    ( pkg_development: line   49) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
-    ( pkg_development: line   46) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
     ( pkg_development: line   43) ok        https://img.shields.io/github/v/release/SS-Atlantis/AtlantisCmd?logo=github
+    (           index: line   30) ok        https://github.com/SalishSeaCast/NEMO-Cmd
+    ( pkg_development: line   49) ok        https://img.shields.io/github/issues/SS-Atlantis/AtlantisCmd?logo=github
+    ( pkg_development: line   23) ok        https://github.com/pypa/hatch
+    ( pkg_development: line   23) ok        https://github.com/SS-Atlantis/AtlantisCmd/actions?query=workflow:sphinx-linkcheck
     (installation/atlantis_cmd: line   46) ok        https://nemo-cmd.readthedocs.io/en/latest/
     (     subcommands: line  181) ok        https://nemo-cmd.readthedocs.io/en/latest/subcommands.html#nemo-gather
-    (           index: line   30) ok        https://github.com/SalishSeaCast/NEMO-Cmd
-    ( pkg_development: line   23) ok        https://github.com/pypa/hatch
+    ( pkg_development: line   46) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SS-Atlantis/AtlantisCmd/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
     ( pkg_development: line  404) ok        https://pytest-cov.readthedocs.io/en/latest/
-    ( pkg_development: line  442) ok        https://github.com/SS-Atlantis/AtlantisCmd/commits/main
     ( pkg_development: line   23) ok        https://pre-commit.com
     (run_description_file/index: line   25) ok        https://pyyaml.org/wiki/PyYAMLDocumentation
-    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
-    (           index: line   56) ok        https://www.apache.org/licenses/LICENSE-2.0
-    ( pkg_development: line   83) ok        https://www.python.org/
     ( pkg_development: line  172) ok        https://pre-commit.com/
+    (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#copyyourpublicsshkeytogithub
     (installation/atlantis_cmd: line   60) ok        https://ubc-moad-docs.readthedocs.io/en/latest/ssh_access.html#secureremoteaccess
-    ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+    ( pkg_development: line   83) ok        https://www.python.org/
     ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/
+    ( pkg_development: line  205) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+    (           index: line   56) ok        https://www.apache.org/licenses/LICENSE-2.0
     build succeeded.
 
     Look for any errors in the above output or in _build/linkcheck/output.txt
@@ -371,18 +381,17 @@ The output looks something like:
 Running the Unit Tests
 ======================
 
-The test suite for the :kbd:`AtlantisCmd` package is in :file:`AtlantisCmd/tests/`.
+The test suite for the :py:obj:`AtlantisCmd` package is in :file:`AtlantisCmd/tests/`.
 The `pytest`_ tool is used for test parametrization and as the test runner for the suite.
 
 .. _pytest: https://docs.pytest.org/en/latest/
 
-With your :kbd:`atlantis-cmd` development environment activated,
-use:
+Use:
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/
-    (atlantis-cmd)$ pytest
+    $ cd AtlantisCmd/
+    $ pixi run pytest
 
 to run the test suite.
 The output looks something like:
@@ -390,11 +399,11 @@ The output looks something like:
 .. code-block:: text
 
     ================================ test session starts =================================
-    platform linux -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
-    Using --randomly-seed=1250465370
+    platform linux -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0
+    Using --randomly-seed=2919284692
     rootdir: /media/doug/warehouse/Atlantis/AtlantisCmd
     configfile: pyproject.toml
-    plugins: cov-7.0.0, randomly-3.15.0, anyio-4.11.0
+    plugins: randomly-3.15.0, cov-7.1.0
     collected 49 items
 
     tests/test_run.py .........................................                         [ 83%]
@@ -409,21 +418,17 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ cd AtlantisCmd/
-    (atlantis-cmd)$ pytest --cov=./
+    $ cd AtlantisCmd/
+    $ pixi run pytest-cov
 
-and generate a test coverage report with:
+The test coverage report will be displayed below the test suite run output.
 
-.. code-block:: bash
-
-    (atlantis-cmd)$ coverage report
-
-to produce a plain text report,
-or
+Alternatively,
+you can use
 
 .. code-block:: bash
 
-    (atlantis-cmd)$ coverage html
+    $ pixi run pytest-cov-html
 
 to produce an HTML report that you can view in your browser by opening :file:`AtlantisCmd/htmlcov/index.html`.
 
@@ -440,7 +445,7 @@ Continuous Integration
     :target: https://app.codecov.io/gh/SS-Atlantis/AtlantisCmd
     :alt: Codecov Testing Coverage Report
 
-The :kbd:`AtlantisCmd` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
+The :py:obj:`AtlantisCmd` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
 The results are visible on the `repo actions page`_,
 from the green checkmarks beside commits on the `repo commits page`_,
 or from the green checkmark to the left of the "Latest commit" message on the `repo code overview page`_ .
@@ -465,7 +470,7 @@ Version Control Repository
     :target: https://github.com/SS-Atlantis/AtlantisCmd
     :alt: Git on GitHub
 
-The :kbd:`AtlantisCmd` package code and documentation source files are available as a `Git`_ repository at https://github.com/SS-Atlantis/AtlantisCmd.
+The :py:obj:`AtlantisCmd` package code and documentation source files are available as a `Git`_ repository at https://github.com/SS-Atlantis/AtlantisCmd.
 
 .. _Git: https://git-scm.com/
 
@@ -515,8 +520,10 @@ completed.
 
 The release process steps are:
 
-#. Use :command:`hatch version release` to bump the version from ``.devn`` to the next release
-   version identifier
+#. Use :command:`pixi run -e dev hatch version release` to bump the version from ``.devn``
+   to the next release version identifier
+
+#. Use :command:`pixi update` ensure that the new version is reflected in the Pixi lock file
 
 #. Commit the version bump
 
@@ -557,8 +564,10 @@ The release process steps are:
 
 #. Close the milestone for the just released version.
 
-#. Use :command:`hatch version minor,dev` to bump the version for the next development cycle,
-   or use :command:`hatch version major,minor,dev` for a year rollover version bump
+#. Use :command:`pixi run -e dev hatch version minor,dev` to bump the version for the next development cycle,
+   or use :command:`pixi run -e dev hatch version major,minor,dev` for a year rollover version bump
+
+#. Use :command:`pixi update` ensure that the new version is reflected in the Pixi lock file
 
 #. Commit the version bump
 

@@ -24,12 +24,11 @@ This module is connected to the :command:`atlantis` command via a scripts and
 entry-points configuration in :file:`pyproject.toml`.
 """
 
+import importlib.metadata
 import sys
 
 import cliff.app
 import cliff.commandmanager
-
-import atlantis_cmd
 
 
 class AtlantisCmdApp(cliff.app.App):
@@ -38,7 +37,7 @@ class AtlantisCmdApp(cliff.app.App):
     def __init__(self):
         super().__init__(
             description="Atlantis Ecosystem Model Command Processor",
-            version=atlantis_cmd.__version__,
+            version=importlib.metadata.version("AtlantisCmd"),
             command_manager=cliff.commandmanager.CommandManager(
                 "atlantis.app", convert_underscores=False
             ),

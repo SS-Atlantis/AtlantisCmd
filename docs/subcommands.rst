@@ -22,7 +22,7 @@
 :command:`atlantis` Sub-Commands
 *********************************
 
-The command :kbd:`atlantis help` produces a list of the available :program:`atlantis` options and sub-commands:
+The command :command:`pixi run atlantis help` produces a list of the available :program:`atlantis` options and sub-commands:
 
 .. code-block:: text
 
@@ -44,12 +44,12 @@ The command :kbd:`atlantis help` produces a list of the available :program:`atla
     run            Prepare, execute, and gather results from a CSIRO Atlantis ecosystem model run.
 
 For details of the arguments and options for a sub-command use
-:command:`atlantis help <sub-command>`.
+:command:`pixi run atlantis help <sub-command>`.
 For example:
 
 .. code-block:: bash
 
-    $ atlantis help run
+    $ pixi run atlantis help run
 
 .. code-block:: text
 
@@ -76,7 +76,19 @@ You can check what version of :program:`atlantis` you have installed with:
 
 .. code-block:: bash
 
-    atlantis --version
+    pixi run atlantis --version
+
+A common use-case is to execute the :command:`atlantis run` command in the directory containing your run description YAML file.
+To accomplish that,
+we have to tell Pixi where to find the :file:`AtlantisCmd/` directory so that it can use the correct environment.
+We do that by using the ``-m`` or ``--manifest`` option of :command:`pixi run`.
+Example:
+
+.. code-block:: bash
+
+    $ cd /ocean/$USER/Atlantis/SSAM_Runs/
+    $ pixi run -m /ocean/$USER/Atlantis/AtlantisCmd salishsea run atlantis_highres_d0.yaml \
+        /ocean/$USER/Atlantis/highres-d0_5b_2019-01-20_depth_PC/
 
 
 .. _atlantis-run:
@@ -135,7 +147,7 @@ Example:
 
 .. code-block:: bash
 
-    $ atlantis run atlantis.yaml /ocean/$USER/Atlantis/runs/my-run/
+    $ pixi run atlantis run atlantis.yaml /ocean/$USER/Atlantis/runs/my-run/
 
 .. code-block:: text
 
@@ -151,7 +163,7 @@ Example:
 
 .. code-block:: bash
 
-    $ atlantis run atlantis.yaml /ocean/$USER/Atlantis/runs/my-run/
+    $ pixi run atlantis run atlantis.yaml /ocean/$USER/Atlantis/runs/my-run/
 
 .. code-block:: text
 
@@ -176,7 +188,7 @@ Please use:
 
 .. code-block:: bash
 
-    $ atlantis help gather
+    $ pixi run atlantis help gather
 
 to see its usage,
 and see :ref:`nemocmd:nemo-gather` for more details.
