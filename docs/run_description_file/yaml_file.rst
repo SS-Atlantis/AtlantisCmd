@@ -313,7 +313,6 @@ An example :kbd:`vcs revisions` section:
     vcs revisions:
       git:
         - /ocean/$USER/Atlantis/salish-sea-atlantis-model/
-        - /ocean/$USER/Atlantis/NEMO-Cmd/
         - /ocean/$USER/Atlantis/AtlantisCmd/
 
 The sub-section key(s)
@@ -343,7 +342,6 @@ the files created will be:
 .. code-block:: text
 
     salish-sea-atlantis-model_rev.txt
-    NEMO-Cmd_rev.txt
     AtlantisCmd_rev.txt
 
 For Git repositories,
