@@ -83,7 +83,6 @@ def fixture_run_desc(tmp_path):
               atlantis code: {atlantis_code_dir}
               atlantis executable name: {atlantis_executable_name}
               runs directory: {runs_dir}
-              atlantis command: {atlantis_cmd}
 
             boxes: {boxes}
 

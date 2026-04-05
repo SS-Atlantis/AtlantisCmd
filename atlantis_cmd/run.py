@@ -182,6 +182,8 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
     :return: Cookiecutter context for creation of the temporary run directory.
     :rtype: dict
     """
+    atlantis_cmd_dir = Path(__file__).parent.parent
+    atlantis_cmd = f"pixi run -m {os.fspath(atlantis_cmd_dir)} atlantis"
     atlantis_repo = nemo_cmd.prepare.get_run_desc_value(
         run_desc, ("paths", "atlantis code"), resolve_path=True, run_dir=tmp_run_dir
     )
@@ -223,14 +225,7 @@ def _calc_cookiecutter_context(run_desc, run_id, desc_file, tmp_run_dir, results
         "results_dir": os.fspath(_resolve_path(results_dir)),
         "atlantis_executable": os.fspath(atlantis_executable),
         "atlantis_executable_name": atlantis_executable_name,
-        "atlantis_cmd": os.fspath(
-            nemo_cmd.prepare.get_run_desc_value(
-                run_desc,
-                ("paths", "atlantis command"),
-                resolve_path=True,
-                run_dir=tmp_run_dir,
-            )
-        ),
+        "atlantis_cmd": atlantis_cmd,
         "boxes": os.fspath(
             nemo_cmd.prepare.get_run_desc_value(
                 run_desc, ("boxes",), resolve_path=True, run_dir=tmp_run_dir

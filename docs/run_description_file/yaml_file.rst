@@ -137,7 +137,6 @@ An example :kbd:`paths` section:
       atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
       atlantis executable name: atlantisMerged
       runs directory: /ocean/$USER/Atlantis/runs/
-      atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
 
 :kbd:`atlantis code`
   The path to the CSIRO Atlantis ecosystem model code Subversion checkout where
@@ -169,8 +168,14 @@ An example :kbd:`paths` section:
   the :command:`atlantis run` sub-command.
 
 :kbd:`atlantis command`
+  .. note::
+     **DEPRECATED.**
+     The ``atlantis command`` path is not required when you have installed :py:obj:`AtlantisCmd`
+     using Pixi.
+     The path required to run the :program:`atlantis` command is calculated in the code.
+
   The path to the :program:`atlantis` command processor executable file installed from
-  the AtlantisCmd Python package.
+  the :py:obj:`AtlantisCmd` Python package.
 
   The :command:`atlantis run` sub-command confirms that the
   :program:`atlantis` command processor executable file exists,
