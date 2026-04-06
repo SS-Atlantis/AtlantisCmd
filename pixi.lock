@@ -2043,7 +2043,7 @@ packages:
   timestamp: 1773926359134
 - pypi: ./
   name: atlantiscmd
-  version: '26.1'
+  version: 26.2.dev0
   sha256: d89b141be6f68be2ab2bdb770a40f63989512f422ed48a4b87dcbd71b82c4d69
   requires_dist:
   - arrow
