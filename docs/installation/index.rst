@@ -16,13 +16,14 @@
 .. SPDX-License-Identifier: Apache-2.0
 
 
-********************************************
-Conda Environment and Software Installations
-********************************************
+*******************************************
+Pixi Environment and Software Installations
+*******************************************
 
-The following sections explain how to set up `conda`_ environments and install software packages for various aspects of working with the Salish Sea configuration of the CSIRO Atlantis ecosystem model.
+The following sections explain how to set up `Pixi`_ environments and install software packages
+for various aspects of working with the Salish Sea configuration of the CSIRO Atlantis ecosystem model.
 
-.. _conda: https://docs.conda.io/en/latest/
+.. _Pixi: https://pixi.prefix.dev/latest/
 
 The :ref:`AtlantisCmdInstallation` section is about the AtlantisCmd Python package that these docs are part of.
 The other sections are about conda environments for other aspects of working with the Atlantis model.
@@ -32,3 +33,4 @@ They are documented here for convenience.
    :maxdepth: 3
 
    atlantis_cmd
+   atlantis_code_dev

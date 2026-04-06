@@ -4,7 +4,6 @@ paths:
   atlantis code: /ocean/$USER/Atlantis/atlantis-trunk/
   atlantis executable name: atlantisMerged
   runs directory: /ocean/$USER/Atlantis/runs/
-  atlantis command: $HOME/conda_envs/atlantis-dev/bin/atlantis
 
 # The name of the boxes .bgm file must match the value of the "geometry" attribute in the
 # global attributes of the initial conditions file.
@@ -44,5 +43,4 @@ output filename base: outputSalishSea
 vcs revisions:
   git:
     - /ocean/$USER/Atlantis/salish-sea-atlantis-model/
-    - /ocean/$USER/Atlantis/NEMO-Cmd/
     - /ocean/$USER/Atlantis/AtlantisCmd/

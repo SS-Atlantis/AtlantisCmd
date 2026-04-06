@@ -292,13 +292,18 @@ class TestCalcCookiecutterContext:
         )
         assert context["atlantis_executable_name"] == "atlantisMerged"
 
-    def test_atlantis_cmd(self, run_desc, args):
+    def test_atlantis_cmd(self, run_desc, args, monkeypatch):
+        def mock_path(path):
+            return Path("/ocean/$USER/Atlantis/AtlantisCmd/atlantis_cmd/run.py")
+
+        monkeypatch.setattr(atlantis_cmd.run, "Path", mock_path)
+
         context = atlantis_cmd.run._calc_cookiecutter_context(
             run_desc, args.run_id, args.desc_file, args.tmp_run_dir, args.results_dir
         )
-        assert context["atlantis_cmd"] == os.fspath(
-            Path(run_desc["paths"]["atlantis command"])
-        )
+
+        pixi_atlantis = "pixi run -m /ocean/$USER/Atlantis/AtlantisCmd atlantis"
+        assert context["atlantis_cmd"] == pixi_atlantis
 
     def test_boxes(self, run_desc, args):
         context = atlantis_cmd.run._calc_cookiecutter_context(
@@ -428,11 +433,15 @@ class TestAtlantisBashScript:
     ):
         results_dir = tmp_path / "results_dir"
         run_desc_yaml = tmp_path / "atlantis.yaml"
+
         atlantis_cmd.run.run(run_desc_yaml, results_dir, no_submit=True)
+
         tmp_run_dir = (
             Path(run_desc["paths"]["runs directory"])
             / "SS-Atlantis_2021-08-04T105443-0700"
         )
+        atlantis_cmd_dir = Path(__file__).parent.parent
+        pixi_atlantis = f"pixi run -m {os.fspath(atlantis_cmd_dir)} atlantis"
         expected = textwrap.dedent(f"""\
             #!/bin/bash
 
@@ -443,7 +452,7 @@ class TestAtlantisBashScript:
             RUN_DESC="{run_desc_yaml}"
             WORK_DIR="{tmp_run_dir}"
             RESULTS_DIR="{results_dir}"
-            GATHER="{run_desc["paths"]["atlantis command"]} gather"
+            GATHER="{pixi_atlantis} gather"
 
             mkdir -p ${{RESULTS_DIR}}
 
@@ -497,11 +506,15 @@ class TestAtlantisBashScript:
 
         results_dir = tmp_path / "results_dir"
         run_desc_yaml = tmp_path / "atlantis.yaml"
+
         atlantis_cmd.run.run(run_desc_yaml, results_dir, no_submit=True)
+
         tmp_run_dir = (
             Path(run_desc["paths"]["runs directory"])
             / "SS-Atlantis_2021-08-04T105443-0700"
         )
+        atlantis_cmd_dir = Path(__file__).parent.parent
+        pixi_atlantis = f"pixi run -m {os.fspath(atlantis_cmd_dir)} atlantis"
         expected = textwrap.dedent(f"""\
             #!/bin/bash
 
@@ -512,7 +525,7 @@ class TestAtlantisBashScript:
             RUN_DESC="{run_desc_yaml}"
             WORK_DIR="{tmp_run_dir}"
             RESULTS_DIR="{results_dir}"
-            GATHER="{run_desc["paths"]["atlantis command"]} gather"
+            GATHER="{pixi_atlantis} gather"
 
             mkdir -p ${{RESULTS_DIR}}
 
