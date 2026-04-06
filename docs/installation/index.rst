@@ -33,3 +33,4 @@ They are documented here for convenience.
    :maxdepth: 3
 
    atlantis_cmd
+   atlantis_code_dev
