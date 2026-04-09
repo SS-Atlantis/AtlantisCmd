@@ -29,7 +29,7 @@ cmd2==3.4.0
 colorama==0.4.6
 cookiecutter==2.7.1
 coverage==7.13.5
-cryptography==46.0.6
+cryptography==46.0.7
 distlib==0.4.0
 docutils==0.21.2
 editables==0.5
