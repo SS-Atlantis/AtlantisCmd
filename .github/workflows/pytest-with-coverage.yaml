@@ -39,7 +39,9 @@ jobs:
         # because something in the repo (maybe cookiecutter?) causes the tests to run
         # in parallel and coverage raises and error about combining branch and statement
         # coverage data; providing the coverage config explicitly is a work-around
-        run: pixi run -e ${{ matrix.environment }} pytest --cov=$GITHUB_WORKSPACE --cov-config=pyproject.toml --cov-report=xml
+        run: pixi run -e ${INPUTS_ENVIRONMENT} pytest --cov=$GITHUB_WORKSPACE --cov-config=pyproject.toml --cov-report=xml
+        env:
+          INPUTS_ENVIRONMENT: ${{ inputs.environment }}
 
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f
