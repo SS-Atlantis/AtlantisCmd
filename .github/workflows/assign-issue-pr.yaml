@@ -2,6 +2,9 @@
 # repo to Doug
 
 name: Assign Issue/PR
+
+permissions: {}
+
 on:
   issues:
     types:
